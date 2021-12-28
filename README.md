@@ -1,4 +1,4 @@
-# iFarmo Backend API
+# iFarmo API Installation
 
 ## Preparing local environment
 1. Install npm (node package manager) https://nodejs.org/en/download/.
@@ -22,3 +22,19 @@
     TOKEN_SECRET = ...
     PORT = ... ```
 4. Run ```npm start``` to run the server.
+
+# iFarmo API Documentation
+
+## Posts
+
+```
+GET: /api/posts
+Response: {posts}
+
+GET: /api/posts/postId
+Response: {post}
+
+POST: /api/posts
+body:  
+
+```
