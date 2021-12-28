@@ -10,7 +10,7 @@ router.get('/', async (req, res) => {
     }
 });
 
-router.get('/:id', async (req, res) => {
+router.get('/:userId', async (req, res) => {
     try {
         const post = await Post.findById(req.params.postId);
         res.json(post);

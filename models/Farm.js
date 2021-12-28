@@ -1,9 +1,16 @@
 const mongoose = require('mongoose');
 
 const farmSchema = mongoose.Schema({
-    farmId: String,
-    name: String,
-    location: String
+    name: {
+        type: String,
+        required: true,
+        trim: true
+    },
+    location: {
+        type: String,
+        required: true,
+        trim: true
+    }
 });
 
 module.exports = mongoose.module('Farm',farmSchema);
