@@ -4,7 +4,7 @@ const user = require('../models/User');
 router.get('/', async (req, res) => {
     try {
         const users = await user.find();
-        res.json(posts);
+        res.json(users);
     } catch(err) {
         res.json({ message: err });
     }
@@ -12,44 +12,56 @@ router.get('/', async (req, res) => {
 
 router.get('/:userId', async (req, res) => {
     try {
-        const post = await Post.findById(req.params.postId);
-        res.json(post);
+        const user = await user.findById(req.params.userId);
+        res.json(user);
     } catch(err) {
         res.json({ message: err });
     }
 });
 
 router.post('/', async (req, res) => {
-    const post = new Post({
-        title: req.body.title,
-        description: req.body.description
+    const user = new User({
+        username: req.body.username,
+        email: req.body.email,
+        password: req.body.password,
+        name: req.body.name,
+        role: req.body.role,
+        farm: req.body.farm,
+        bio: req.body.bio,
+        contactInfo: req.body.contactInfo
     });
     try {
-        const savedPost = await post.save();
-        res.json(savedPost);
+        const savedUser = await post.save();
+        res.json(savedUser);
     } catch(err) {
         res.json({ message: err });
     }
 });
 
-router.patch('/:postId', async (req, res) => {
+router.patch('/:userId', async (req, res) => {
     try {
-        const updatedPost = await Post.updateOne(
-            {_id: req.params.postId}, {$set: {
-                title: req.body.title,
-                description: req.body.description
+        const updatedUser = await Post.updateOne(
+            {_id: req.params.userId}, {$set: {
+                username: req.body.username,
+                email: req.body.email,
+                password: req.body.password,
+                name: req.body.name,
+                role: req.body.role,
+                farm: req.body.farm,
+                bio: req.body.bio,
+                contactInfo: req.body.contactInfo
             }}
         );
-        res.json(updatedPost);
+        res.json(updatedUser);
     } catch(err) {
         res.json({ message: err });
     }
 });
 
-router.delete('/:postId', async (req, res) => {
+router.delete('/:userId', async (req, res) => {
     try {
-        const removedPost = await Post.deleteOne({ _id: req.params.postId });
-        res.json(removedPost);
+        const removedUser = await Post.deleteOne({ _id: req.params.userId });
+        res.json(removedUser);
     } catch (err) {
         res.json({ message: err });
     }
