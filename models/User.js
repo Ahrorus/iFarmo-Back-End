@@ -3,43 +3,33 @@ const mongoose = require('mongoose');
 const userSchema = mongoose.Schema({
     username: {
         type: String,
-        required: true,
-        trim: true
+        required: true
     },
     email: {
         type: String,
-        required: true,
-        trim: true
+        required: true
     },
     password: {
         type: String,
-        required: true,
-        trim: true
+        required: true
     },
     name: {
         type: String,
-        required: true,
-        trim: true
+        required: true
     },
     role: {
         type: String,
         required: true,
-        trim: true
+        default: "user"
     },
     farm: {
-        type: String,
-        required: true,
-        trim: true
+        type: String
     },
     bio: {
-        type: String,
-        required: true,
-        trim: true
+        type: String
     },
     contactInfo: {
-        type: String,
-        required: true,
-        trim: true
+        type: String
     }
 });
 
