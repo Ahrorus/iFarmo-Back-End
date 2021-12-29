@@ -31,7 +31,7 @@ router.post('/', async (req, res) => {
         contactInfo: req.body.contactInfo
     });
     try {
-        const savedUser = await post.save();
+        const savedUser = await user.save();
         res.json(savedUser);
     } catch(err) {
         res.json({ message: err });
@@ -40,7 +40,7 @@ router.post('/', async (req, res) => {
 
 router.patch('/:userId', async (req, res) => {
     try {
-        const updatedUser = await Post.updateOne(
+        const updatedUser = await user.updateOne(
             {_id: req.params.userId}, {$set: {
                 username: req.body.username,
                 email: req.body.email,

@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const farm = require('../models/Farm');
+const Farm = require('../models/Farm');
 
 router.get('/', async (req, res) => {
     try {
@@ -12,9 +12,9 @@ router.get('/', async (req, res) => {
 
 router.get('/:farmId', async (req, res) => {
     try {
-        const farms = await farm.findById(req.params.farmId);
+        const farms = await Farm.findById(req.params.farmId);
     } catch (err) {
-        
+        res.json({message: err});
     }
 });
 
@@ -24,4 +24,20 @@ router.post('/', async (req, res) => {
     } catch (err) {
         
     }
-})
+});
+
+router.patch('/:farmId', (req, res) => {
+    try {
+        
+    } catch (err) {
+        
+    }
+});
+
+router.delete('/:farmId', (req, res) => {
+    try{
+
+    } catch(err){
+
+    }
+});
