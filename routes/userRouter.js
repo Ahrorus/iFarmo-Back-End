@@ -1,5 +1,6 @@
 const router = require('express').Router();
-const user = require('../models/User');
+const Farm = require('../models/Farm');
+const User = require('../models/User');
 
 router.get('/', async (req, res) => {
     try {
@@ -31,7 +32,7 @@ router.post('/', async (req, res) => {
         contactInfo: req.body.contactInfo
     });
     try {
-        const savedUser = await post.save();
+        const savedUser = await user.save();
         res.json(savedUser);
     } catch(err) {
         res.json({ message: err });
@@ -40,7 +41,7 @@ router.post('/', async (req, res) => {
 
 router.patch('/:userId', async (req, res) => {
     try {
-        const updatedUser = await Post.updateOne(
+        const updatedUser = await User.updateOne(
             {_id: req.params.userId}, {$set: {
                 username: req.body.username,
                 email: req.body.email,
@@ -60,7 +61,7 @@ router.patch('/:userId', async (req, res) => {
 
 router.delete('/:userId', async (req, res) => {
     try {
-        const removedUser = await Post.deleteOne({ _id: req.params.userId });
+        const removedUser = await User.deleteOne({ _id: req.params.userId });
         res.json(removedUser);
     } catch (err) {
         res.json({ message: err });
