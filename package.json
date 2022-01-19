@@ -17,6 +17,7 @@
     "express": "^4.17.2",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.1.2",
+    "mongoose-extend-schema": "^1.0.0",
     "nodemon": "^2.0.15",
     "passport-local": "^1.0.0"
   }

@@ -13,10 +13,14 @@ router.get('/', authenticate.verifyAdmin, function(req, res, next) {
 router.post('/register', async (req, res) => {
     // Validate
     const {error} = registerValidation(req.body);
-    if (error) return res.status(400).send(error.details[0].message);
+    if (error) {
+        return res.status(400).send(error.details[0].message);
+    }
     // Check if the email already exists
     const emailExists = await User.findOne({email: req.body.email});
-    if (emailExists) return res.status(400).send('Email already exists');
+    if (emailExists) {
+        return res.status(400).send('Email already exists');
+    }
     // Check if the username already exists
     const usernameExists = await User.findOne({username: req.body.username});
     if (usernameExists) return res.status(400).send('Username already exists');
@@ -30,13 +34,19 @@ router.post('/register', async (req, res) => {
         password: password,
         name: name
     });
-    // Save the user
-    try {
-        const savedUser = await user.save();
-        res.send({user: savedUser._id});
-    } catch(err) {
-        res.status(404).send('Unable to create new user.');
-    }
+    user.save((err, user) => {
+        if (err) {
+          res.statusCode = 500;
+          res.setHeader('Content-Type', 'application/json');
+          res.json({err: err});
+          return ;
+        }
+        passport.authenticate('local')(req, res, () => {
+          res.statusCode = 200;
+          res.setHeader('Content-Type', 'application/json');
+          res.json({success: true, status: 'Registration Successful!'});
+        });
+    });
 });
 
 // Login
@@ -57,11 +67,16 @@ router.post('/login', async (req, res) => {
 });
 
 //logout
-router.get('/logout', (req, res) => {
+router.get('/logout', (req, res, next) => {
     if(req.session){
         req.session.destroy();
         res.clearCookie('session-id')
         res.redirect('/'); //go back to login/default page
+    }
+    else{
+        var err = new Error('You are not logged in!');
+        err.status = 403;
+        next(err);
     }
 });
 
