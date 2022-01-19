@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const Post = require('./Post');
 
 const userSchema = mongoose.Schema({
     username: {
@@ -26,10 +27,14 @@ const userSchema = mongoose.Schema({
         type: String
     },
     bio: {
-        type: String
+        type: String,
+        required: true
     },
     contactInfo: {
         type: String
+    },
+    posts: {
+        type: [Post]
     }
 });
 
