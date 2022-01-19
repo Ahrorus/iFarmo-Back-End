@@ -27,9 +27,9 @@ router.post('/', async (req, res) => {
         password: req.body.password,
         name: req.body.name,
         role: req.body.role,
-        farm: req.body.farm,
         bio: req.body.bio,
-        contactInfo: req.body.contactInfo
+        contactInfo: req.body.contactInfo,
+        phone: req.body.phone
     });
     try {
         const savedUser = await user.save();
@@ -48,9 +48,9 @@ router.patch('/:userId', async (req, res) => {
                 password: req.body.password,
                 name: req.body.name,
                 role: req.body.role,
-                farm: req.body.farm,
                 bio: req.body.bio,
-                contactInfo: req.body.contactInfo
+                contactInfo: req.body.contactInfo,
+                phone: req.body.phone
             }}
         );
         res.json(updatedUser);

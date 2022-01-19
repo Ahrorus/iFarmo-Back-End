@@ -23,9 +23,6 @@ const userSchema = mongoose.Schema({
         required: true,
         default: "user"
     },
-    farm: {
-        type: String
-    },
     bio: {
         type: String,
         required: true
@@ -33,8 +30,13 @@ const userSchema = mongoose.Schema({
     contactInfo: {
         type: String
     },
+    phone: {
+        type: String,
+        required: true
+    },
     posts: {
-        type: [Post]
+        type: [Post],
+        default: []
     }
 });
 
