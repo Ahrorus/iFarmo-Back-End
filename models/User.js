@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const Post = require('./Post');
 
 const userSchema = mongoose.Schema({
     username: {
@@ -22,14 +23,16 @@ const userSchema = mongoose.Schema({
         required: true,
         default: "user"
     },
-    farm: {
-        type: String
-    },
     bio: {
-        type: String
+        type: String,
+        required: true
     },
     contactInfo: {
         type: String
+    },
+    phone: {
+        type: String,
+        required: true
     }
 });
 

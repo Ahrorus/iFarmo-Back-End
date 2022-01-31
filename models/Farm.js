@@ -11,8 +11,9 @@ const farmSchema = mongoose.Schema({
         required: true,
         trim: true
     },
-    user: {
-        type: String,
+    owner: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true
     }
 });
 
