@@ -9,9 +9,9 @@ mongoose.connect(process.env.DB_CONNECTION, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 }).then((result) => {
-    console.log('Connected to MongoDB.')
+    console.log('Connected to MongoDB.');
 }).catch((err) => {
-    console.log('Error connecting to MongoDB:', err.message)
+    console.log('Error connecting to MongoDB:', err.message);
 }); 
 
 // Middleware
@@ -20,8 +20,8 @@ app.use(express.json());
 
 // Route Middleware
 app.use('/api/posts', require('./routes/postRouter'));
-app.use('api/auth', require('./routes/authRouter'));
-app.user('api/users', require('./routes/userRouter'));
+app.use('/api/auth', require('./routes/authRouter'));
+app.use('/api/users', require('./routes/userRouter'));
 
 // Listen to server
-app.listen(process.env.PORT, () => console.log('Server up and running.'))
+app.listen(process.env.PORT || 80, () => console.log('Server up and running.'))
