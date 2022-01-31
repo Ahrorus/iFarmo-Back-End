@@ -10,6 +10,9 @@ const farmSchema = mongoose.Schema({
         type: String,
         required: true,
         trim: true
+    },
+    user: {
+        type: String,
     }
 });
 
