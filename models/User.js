@@ -33,10 +33,6 @@ const userSchema = mongoose.Schema({
     phone: {
         type: String,
         required: true
-    },
-    posts: {
-        type: [Post],
-        default: []
     }
 });
 
