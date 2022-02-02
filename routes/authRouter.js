@@ -4,11 +4,18 @@ const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 const {registerValidation, loginValidation} = require('../util/validation');
 
+
+/* default page ???*/
+router.get('/', authenticate.verifyAdmin, function(req, res, next) {
+    res.send('respond with a resource');
+});
 // Register
 router.post('/register', async (req, res) => {
     // Validate
     const {error} = registerValidation(req.body);
-    if (error) return res.status(400).send(error.details[0].message);
+    if (error) {
+        return res.status(400).send(error.details[0].message);
+    }
     // Check if the email already exists
     const emailExists = await User.findOne({email: req.body.email});
     if (emailExists) return res.status(400).send('Email already exists.');
@@ -49,6 +56,20 @@ router.post('/login', async (req, res) => {
     // Create and assign a token
     const token = jwt.sign({_id: user._id}, process.env.TOKEN_SECRET);
     res.header('auth-token', token).send(token);
+});
+
+//logout
+router.get('/logout', (req, res, next) => {
+    if(req.session){
+        req.session.destroy();
+        res.clearCookie('session-id')
+        res.redirect('/'); //go back to login/default page
+    }
+    else{
+        var err = new Error('You are not logged in!');
+        err.status = 403;
+        next(err);
+    }
 });
 
 module.exports = router;

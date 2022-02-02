@@ -25,6 +25,10 @@ const equipmentSchema = mongoose.Schema({
         type: Date,
         required: true,
         default: Date.now
+    },
+    postedBy: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true
     }
 });
 
