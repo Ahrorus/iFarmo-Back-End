@@ -5,10 +5,6 @@ const User = require('../models/User');
 const {registerValidation, loginValidation} = require('../util/validation');
 
 
-/* default page ???*/
-router.get('/', authenticate.verifyAdmin, function(req, res, next) {
-    res.send('respond with a resource');
-});
 // Register
 router.post('/register', async (req, res) => {
     // Validate
