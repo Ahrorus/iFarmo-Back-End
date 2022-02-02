@@ -22,14 +22,13 @@ const userSchema = mongoose.Schema({
         required: true,
         default: "user"
     },
-    farm: {
-        type: String
-    },
     bio: {
-        type: String
+        type: String,
+        default: ""
     },
     contactInfo: {
-        type: String
+        type: String,
+        default: ""
     }
 });
 
