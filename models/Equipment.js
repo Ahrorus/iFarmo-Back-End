@@ -1,11 +1,6 @@
 const mongoose = require('mongoose');
 
 const equipmentSchema = mongoose.Schema({
-    postedBy: {
-        type: String,
-        required: true,
-        trim: true
-    },
     title: {
         type: String,
         required: true,

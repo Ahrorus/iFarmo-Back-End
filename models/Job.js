@@ -16,6 +16,16 @@ const jobSchema = mongoose.Schema({
         required: true,
         trim: true
     },
+    salary: {
+        type: Number,
+        required: true,
+        trim: true
+    },
+    timeUnit: {
+        type: String,
+        required: true,
+        trim: true
+    },
     datePosted: {
         type: Date,
         required: true,
