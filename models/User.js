@@ -25,14 +25,11 @@ const userSchema = mongoose.Schema({
     },
     bio: {
         type: String,
-        required: true
+        default: ""
     },
     contactInfo: {
-        type: String
-    },
-    phone: {
         type: String,
-        required: true
+        default: ""
     }
 });
 

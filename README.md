@@ -1,4 +1,11 @@
-# iFarmo API Installation
+# iFarmo API
+
+This is a repository that contains necessary project files for the iFarmo's backend server. The server is deployed on Heroku, and its API calls are accessible via link:
+
+https://nodejs-ifarmo.herokuapp.com/api/
+
+
+# iFarmo API Local Installation
 
 ## Preparing local environment
 1. Install npm (node package manager) https://nodejs.org/en/download/.
@@ -25,16 +32,55 @@
 
 # iFarmo API Documentation
 
-## Posts
+Use the API on localhost or the one deployed on Heroku (https://nodejs-ifarmo.herokuapp.com/api/) to make requests.
+
+## Authentication
 
 ```
-GET: /api/posts
-Response: {posts}
+POST: /api/auth/register
+body: {
+    "username": "min=8, max=30",
+    "password": "min=8, max=30",
+    "name": "min=2, max=30",
+    "email": "min=8, max=30, email"
+}
+response: {
+    "user": "new_user_id"
+}
 
-GET: /api/posts/postId
-Response: {post}
+POST: /api/auth/login
+body: {
+    "login": "min=8, max=30, either email or username, must exist",
+    "password": "min=8, max=30"
+}
+response: new_jwt_token_generated_from_user_id
+header of the response: auth-token field
+}
+```
 
-POST: /api/posts
-body:  
+## Users
 
+```
+GET: /api/users
+response: {all users}
+
+GET: /api/users/:userId
+response: {user object}
+
+PATCH: /api/users/:userId
+header: pass the auth-token of the same user
+body: {
+    username: "min=8, max=30",
+    email: "min=8, max=30",
+    password: "min=8, max=30",
+    name: "min=8, max=30",
+    role: "user", (keep this as "user" by default)
+    bio: "",
+    contactInfo: ""
+}
+response: {updated user object}
+
+DELETE: /api/users/:userId
+header: pass the auth-token of the user
+response: {removed user object}
 ```
