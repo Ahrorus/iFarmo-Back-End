@@ -1,35 +1,35 @@
 const router = require('express').Router();
-const Product = require('../models/Product');
+const Job = require('../models/Job');
 
 router.get('/', async (req, res) => {
     try{//
         if(req.params.queryString == ""){ //default
             if(request.params.filters == ""){//no search filters
-                const products = await Product.find();
+                const jobs = await Job.find();
             }
             else{ //yes search filters
-                const products = await Product.find();
+                const jobs = await Job.find();
             }
         }
         else{//search term
             if(request.params.filters == ""){ //no search filters
-                const products = await Product.find();
+                const jobs = await Job.find();
             }
             else{ //yes search filters
-                const products = await Product.find();
+                const jobs = await Job.find();
             }
         }
-        res.json(products);
+        res.json(jobs);
     }
     catch(err){
         res.json({message: err});
     }
 });
 
-router.get('/:productId', async (req, res) => {
+router.get('/:jobId', async (req, res) => {
     try{
-        const product = await Product.findById(req.params.productId);
-        res.json(product);
+        const job = await Job.findById(req.params.jobId);
+        res.json(job);
     }
     catch(err){
         res.json({message: err});
@@ -38,7 +38,7 @@ router.get('/:productId', async (req, res) => {
 
 router.post('/', async (req, res) => {
     try{
-        const newProduct = new Product({
+        const newJob = new Job({
             name: req.body.name,
             type: req.body.type,
             desc: req.body.desc,
@@ -52,29 +52,30 @@ router.post('/', async (req, res) => {
     }
 });
 
-router.patch('/:productId', (req, res) => {
+router.patch('/:jobId', (req, res) => {
     try{
-        const product = Product.updateOne(
-            {_id: req.params.productId}, {$set: {
-                name: req.body.name,
+        const job = Job.updateOne(
+            {_id: req.params.jobId}, {$set: {
                 type: req.body.type,
+                title: req.body.title,
                 desc: req.body.desc,
-                quantity: req.body.quantity,
-                unit_type: req.body.unit_type,
-                price: req.body.price,
+                salary: req.body.salary,
+                timeUnit: req.body.timeUnit,
+                datePosted: req.body.datePosted,
+                postedBy: req.body.postedBy
             }}
         );
-        res.json(updatedProduct);
+        res.json(updatedJob);
     }
     catch(err){
         res.json({message: err});
     }
 });
 
-router.delete('/:productId', (req, res) => {
+router.delete('/:jobId', (req, res) => {
     try{
-        const deletedProduct = await Product.deleteOne({_id: req.params.productId});
-        res.json(deletedProduct);
+        const deletedJob = await Job.deleteOne({_id: req.params.jobId});
+        res.json(deletedJob);
     }
     catch(err){
         res.json({message: err});
