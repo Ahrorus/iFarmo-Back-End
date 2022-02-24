@@ -1,7 +1,6 @@
 const router = require('express').Router();
 const User = require('../models/User');
 const jwt = require('jsonwebtoken');
-const verify = require('../util/verifyToken');
 
 // Get all users
 router.get('/', async (req, res) => {
@@ -72,7 +71,7 @@ router.put('/:userId', async (req, res) => {
 });
 
 // Delete a user by id
-router.delete('/:userId', verify, async (req, res) => {
+router.delete('/:userId', async (req, res) => {
     // Get auth-token from header
     const token = req.header('auth-token');
     if (!token) return res.status(401).send('Access Denied. Token required.');
