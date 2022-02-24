@@ -65,22 +65,21 @@ GET: /api/users
 response: {all users}
 
 GET: /api/users/:userId
+header: pass the auth-token of any user (meaning, user needs to be logged in)
+no body expected
 response: {user object}
 
-PATCH: /api/users/:userId
-header: pass the auth-token of the same user
+PUT: /api/users/:userId
+header: pass the auth-token of the same user (meaning, user needs to be logged in and it has to be the same user)
 body: {
-    username: "min=8, max=30",
-    email: "min=8, max=30",
-    password: "min=8, max=30",
     name: "min=8, max=30",
     role: "user", (keep this as "user" by default)
-    bio: "",
-    contactInfo: ""
+    bio: "my bio",
+    contactInfo: "+16969696969"
 }
 response: {updated user object}
 
 DELETE: /api/users/:userId
-header: pass the auth-token of the user
+header: pass the auth-token of the same user
 response: {removed user object}
 ```
