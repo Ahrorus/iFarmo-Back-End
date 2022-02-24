@@ -63,7 +63,7 @@ router.post('/', async (req, res) => {
     }
 });
 
-router.patch('/:jobId', (req, res) => {
+router.patch('/:jobId', async (req, res) => {
     const token = req.header('auth-token');
     if (!token) {
         return res.status(401).send('Access Denied. Token required.');
@@ -92,7 +92,7 @@ router.patch('/:jobId', (req, res) => {
     }
 });
 
-router.delete('/:jobId', (req, res) => {
+router.delete('/:jobId', async (req, res) => {
     const token = req.header('auth-token');
     if (!token) {
         return res.status(401).send('Access Denied. Token required.');

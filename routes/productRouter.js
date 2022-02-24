@@ -66,7 +66,7 @@ router.post('/', async (req, res) => {
     }
 });
 
-router.patch('/:productId', (req, res) => {
+router.patch('/:productId', async (req, res) => {
     const token = req.header('auth-token');
     if(!token){
         return res.status(401).send('Access denied. Token required');
@@ -94,7 +94,7 @@ router.patch('/:productId', (req, res) => {
     }
 });
 
-router.delete('/:productId', (req, res) => {
+router.delete('/:productId', async (req, res) => {
     const token = req.header('auth-token');
     if(!token){
         return res.status(401).send('Access denied. Token required');
