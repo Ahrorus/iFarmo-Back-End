@@ -64,7 +64,16 @@ router.post('/', async (req, res) => {
 });
 
 router.patch('/:jobId', (req, res) => {
+    const token = req.header('auth-token');
+    if (!token) {
+        return res.status(401).send('Access Denied. Token required.');
+    }    
     try{
+        const verifiedUser = jwt.verify(token, process.env.TOKEN_SECRET);
+        const user = await User.findById(verifiedUser._id);
+        if(user.role != "farmer"){
+            return res.status(403).send("Unauthorized Operation. Must be a farmer to list a job");
+        }
         const job = Job.updateOne(
             {_id: req.params.jobId}, {$set: {
                 type: req.body.type,
@@ -84,7 +93,16 @@ router.patch('/:jobId', (req, res) => {
 });
 
 router.delete('/:jobId', (req, res) => {
+    const token = req.header('auth-token');
+    if (!token) {
+        return res.status(401).send('Access Denied. Token required.');
+    }    
     try{
+        const verifiedUser = jwt.verify(token, process.env.TOKEN_SECRET);
+        const user = await User.findById(verifiedUser._id);
+        if(user.role != "farmer"){
+            return res.status(403).send("Unauthorized Operation. Must be a farmer to list a job");
+        }
         const deletedJob = await Job.deleteOne({_id: req.params.jobId});
         res.json(deletedJob);
     }
