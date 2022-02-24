@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const Product = require('../models/Product');
+const User = require('../models/User');
 
 router.get('/', async (req, res) => {
     try{//
@@ -37,7 +38,20 @@ router.get('/:productId', async (req, res) => {
 });
 
 router.post('/', async (req, res) => {
+    //check for token
+    const token = req.header('auth-token');
+    if (!token) {
+        return res.status(401).send('Access Denied. Token required.');
+    }
+    //continue
     try{
+        //check if the user is verified and a farmer
+        const verifiedUser = jwt.verify(token, process.env.TOKEN_SECRET);
+        const user = await User.findById(verifiedUser._id);
+        if(user.role != 'farmer'){
+            return res.status(403).send('Unauthorized operation. Only farmers can list products');
+        }
+        //post product
         const newProduct = new Product({
             name: req.body.name,
             type: req.body.type,
@@ -53,7 +67,16 @@ router.post('/', async (req, res) => {
 });
 
 router.patch('/:productId', (req, res) => {
+    const token = req.header('auth-token');
+    if(!token){
+        return res.status(401).send('Access denied. Token required');
+    }
     try{
+        const verifiedUser = jwt.verify(token, process.env.TOKEN_SECRET);
+        const user = await User.findById(verifiedUser._id);
+        if(user.role != 'farmer'){
+            return res.status(403).send('Unauthorized operation. Only farmers can update products');
+        }
         const product = Product.updateOne(
             {_id: req.params.productId}, {$set: {
                 name: req.body.name,
@@ -72,7 +95,16 @@ router.patch('/:productId', (req, res) => {
 });
 
 router.delete('/:productId', (req, res) => {
+    const token = req.header('auth-token');
+    if(!token){
+        return res.status(401).send('Access denied. Token required');
+    }
     try{
+        const verifiedUser = jwt.verify(token, process.env.TOKEN_SECRET);
+        const user = await User.findById(verifiedUser._id);
+        if(user.role != 'farmer'){
+            return res.status(403).send('Unauthorized operation. Only farmers can update products');
+        }
         const deletedProduct = await Product.deleteOne({_id: req.params.productId});
         res.json(deletedProduct);
     }
