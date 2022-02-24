@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const Job = require('../models/Job');
+const User = require('../models/User');
 
 router.get('/', async (req, res) => {
     try{//
@@ -37,7 +38,17 @@ router.get('/:jobId', async (req, res) => {
 });
 
 router.post('/', async (req, res) => {
+    //check for token
+    const token = req.header('auth-token');
+    if (!token) {
+        return res.status(401).send('Access Denied. Token required.');
+    }    
     try{
+        const verifiedUser = jwt.verify(token, process.env.TOKEN_SECRET);
+        const user = await User.findById(verifiedUser._id);
+        if(user.role != "farmer"){
+            return res.status(403).send("Unauthorized Operation. Must be a farmer to list a job");
+        }
         const newJob = new Job({
             name: req.body.name,
             type: req.body.type,
