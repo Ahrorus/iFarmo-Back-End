@@ -3,7 +3,7 @@ const Product = require('../models/Product');
 const User = require('../models/User');
 
 router.get('/', async (req, res) => {
-    try{//
+    try{
         if(req.params.queryString == ""){ //default
             if(request.params.filters == ""){//no search filters
                 const products = await Product.find();
@@ -20,6 +20,8 @@ router.get('/', async (req, res) => {
                 const products = await Product.find();
             }
         }
+        const products = await Product.find();
+        console.log(products)
         res.json(products);
     }
     catch(err){
@@ -60,6 +62,9 @@ router.post('/', async (req, res) => {
             unit_type: req.body.unit_type,
             price: req.body.price
         })
+        const savedProduct = await newProduct.save();
+        res.send({savedProduct: savedProduct._id});
+        return res.json(newProduct);
     }
     catch(err){
         res.json({message: err});
