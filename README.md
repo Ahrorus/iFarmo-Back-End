@@ -72,14 +72,53 @@ response: {user object}
 PUT: /api/users/:userId
 header: pass the auth-token of the same user (meaning, user needs to be logged in and it has to be the same user)
 body: {
-    name: "min=8, max=30",
-    role: "user", (keep this as "user" by default)
-    bio: "my bio",
-    contactInfo: "+16969696969"
+    "name": "min=8, max=30",
+    "role": "farmer", (keep this as "farmer" by default)
+    "bio": "min=0, max=250",
+    "contactInfo": "+16969696969, min=8, max=20"
 }
 response: {updated user object}
 
 DELETE: /api/users/:userId
 header: pass the auth-token of the same user
 response: {removed user object}
+```
+
+## Products
+
+```
+GET: /api/products
+response: {all products}
+
+GET: /api/products/:productId
+no body expected
+response: {product object}
+
+POST: /api/products/:productId
+header: pass the auth-token of any user (has to be farmer)
+body: {
+    "name": "min=2, max=20",
+    "type": "min=2, max=10",
+    "desc": "min=0, max=250",
+    "quantity": "number",
+    "unit_type": "lbs OR kg OR g OR piece",
+    "price": "number"
+}
+response: {"product": "new_product_id"}
+
+PUT: /api/products/:productId
+header: pass the auth-token of the same user (meaning, user needs to be logged in, the user is farmer, and it has to be the same user)
+body: {
+    "name": "min=2, max=20",
+    "type": "min=2, max=10",
+    "desc": "min=0, max=250",
+    "quantity": "number",
+    "unit_type": "lbs OR kg OR g OR piece",
+    "price": "number"
+}
+response: {updated product object}
+
+DELETE: /api/products/:productId
+header: pass the auth-token of the same user (has to be farmer)
+response: {removed product object}
 ```

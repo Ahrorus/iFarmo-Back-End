@@ -22,6 +22,7 @@ app.use(express.json());
 app.use('/api/posts', require('./routes/postRouter'));
 app.use('/api/auth', require('./routes/authRouter'));
 app.use('/api/users', require('./routes/userRouter'));
+app.use('/api/products', require('./routes/productRouter'));
 
 // Listen to server
 app.listen(process.env.PORT || 80, () => console.log('Server up and running.'))

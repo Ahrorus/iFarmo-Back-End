@@ -26,7 +26,7 @@ const updateUserValidation = (data) => {
     const schema = Joi.object({
         name: Joi.string().trim().min(2).max(30).required(), 
         role: Joi.string().trim().valid('user','farmer', 'worker'),
-        bio: Joi.string().trim().min(0).max(255),
+        bio: Joi.string().trim().min(0).max(250),
         contactInfo: Joi.string().trim().min(0).max(30).required()
     });
     return schema.validate(data);
@@ -37,7 +37,7 @@ const productValidation = (data) => {
     const schema = Joi.object({
         name: Joi.string().trim().min(2).max(20).required(),
         type: Joi.string().trim().min(2).max(10).required(),
-        desc: Joi.string().trim().min(0).max(255),
+        desc: Joi.string().trim().min(0).max(250),
         quantity: Joi.number(),
         unit_type: Joi.string().trim().valid('lbs', 'kg', 'g', 'piece').required(),
         price: Joi.number().required()
