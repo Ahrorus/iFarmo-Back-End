@@ -48,4 +48,4 @@ const productValidation = (data) => {
 module.exports.registerValidation = registerValidation;
 module.exports.loginValidation = loginValidation;
 module.exports.updateUserValidation = updateUserValidation;
-module.exports.roductValidation = roductValidation;
+module.exports.productValidation = productValidation;

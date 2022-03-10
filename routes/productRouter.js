@@ -62,7 +62,7 @@ router.post('/', async (req, res) => {
             unit_type: req.body.unit_type,
             price: req.body.price
         });
-        const savedProduct = newProduct.save();
+        const savedProduct = await newProduct.save();
         res.send({ product: savedProduct._id });
     }
     catch(err){
@@ -71,7 +71,7 @@ router.post('/', async (req, res) => {
 });
 
 // Update product
-router.put('/:productId', (req, res) => {
+router.put('/:productId', async (req, res) => {
     const token = req.header('auth-token');
     if(!token){
         return res.status(401).send('Access denied. Token required');
@@ -88,7 +88,7 @@ router.put('/:productId', (req, res) => {
             return res.status(400).send(error.details[0].message);
         }
         // Update product
-        const updatedProduct = Product.updateOne(
+        const updatedProduct = await Product.updateOne(
             {_id: req.params.productId}, {$set: {
                 name: req.body.name,
                 type: req.body.type,
@@ -105,7 +105,7 @@ router.put('/:productId', (req, res) => {
     }
 });
 
-router.delete('/:productId', (req, res) => {
+router.delete('/:productId', async (req, res) => {
     const token = req.header('auth-token');
     if(!token){
         return res.status(401).send('Access denied. Token required');
