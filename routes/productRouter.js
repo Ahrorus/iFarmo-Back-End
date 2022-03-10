@@ -1,25 +1,20 @@
 const router = require('express').Router();
 const Product = require('../models/Product');
 const User = require('../models/User');
+const productValidation = require('../util/validation');
 
+// Get product list
 router.get('/', async (req, res) => {
     try{//
-        if(req.params.queryString == ""){ //default
-            if(request.params.filters == ""){//no search filters
-                const products = await Product.find();
-            }
-            else{ //yes search filters
-                const products = await Product.find();
-            }
-        }
-        else{//search term
-            if(request.params.filters == ""){ //no search filters
-                const products = await Product.find();
-            }
-            else{ //yes search filters
-                const products = await Product.find();
-            }
-        }
+        const searchKey = req.params.searchKey;
+        const filter = req.params.filter;
+        let products = await Product.find();
+        if (searchKey != '')
+            products = products.find({ name: { $regex: searchKey, $options: 'i'}});
+        if (filter == 'date_asc')
+            products = products.sort({ date: 'asc'});
+        if (filter == 'date_desc')
+            products = products.sort({ date: 'desc'});
         res.json(products);
     }
     catch(err){
@@ -27,6 +22,7 @@ router.get('/', async (req, res) => {
     }
 });
 
+// Get the specific product
 router.get('/:productId', async (req, res) => {
     try{
         const product = await Product.findById(req.params.productId);
@@ -37,21 +33,27 @@ router.get('/:productId', async (req, res) => {
     }
 });
 
+// Create product post
 router.post('/', async (req, res) => {
-    //check for token
+    // Check for token
     const token = req.header('auth-token');
     if (!token) {
         return res.status(401).send('Access Denied. Token required.');
     }
-    //continue
+    // Continue
     try{
-        //check if the user is verified and a farmer
+        // Check if the user is verified and a farmer
         const verifiedUser = jwt.verify(token, process.env.TOKEN_SECRET);
         const user = await User.findById(verifiedUser._id);
         if(user.role != 'farmer'){
             return res.status(403).send('Unauthorized operation. Only farmers can list products');
         }
-        //post product
+        // Validate
+        const {error} = productValidation(req.body);
+        if (error) {
+            return res.status(400).send(error.details[0].message);
+        }
+        // Post product
         const newProduct = new Product({
             name: req.body.name,
             type: req.body.type,
@@ -59,14 +61,17 @@ router.post('/', async (req, res) => {
             quantity: req.body.quantity,
             unit_type: req.body.unit_type,
             price: req.body.price
-        })
+        });
+        const savedProduct = newProduct.save();
+        res.send({ product: savedProduct._id });
     }
     catch(err){
         res.json({message: err});
     }
 });
 
-router.patch('/:productId', (req, res) => {
+// Update product
+router.put('/:productId', (req, res) => {
     const token = req.header('auth-token');
     if(!token){
         return res.status(401).send('Access denied. Token required');
@@ -77,7 +82,13 @@ router.patch('/:productId', (req, res) => {
         if(user.role != 'farmer'){
             return res.status(403).send('Unauthorized operation. Only farmers can update products');
         }
-        const product = Product.updateOne(
+        // Validate
+        const {error} = productValidation(req.body);
+        if (error) {
+            return res.status(400).send(error.details[0].message);
+        }
+        // Update product
+        const updatedProduct = Product.updateOne(
             {_id: req.params.productId}, {$set: {
                 name: req.body.name,
                 type: req.body.type,

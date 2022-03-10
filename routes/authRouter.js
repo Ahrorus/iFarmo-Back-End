@@ -25,13 +25,14 @@ router.post('/register', async (req, res) => {
     const user = new User({
         username: req.body.username,
         email: req.body.email,
+        // role: req.body.role,
         password: hashedPassword,
         name: req.body.name
     });
     // Save the user
     try {
         const savedUser = await user.save();
-        res.send({user: savedUser._id});
+        res.send({ user: savedUser._id });
     } catch(err) {
         res.status(404).send('Unable to register new user.');
     }

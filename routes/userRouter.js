@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const User = require('../models/User');
 const jwt = require('jsonwebtoken');
+const updateUserValidation = require('../util/validation');
 
 // Get all users
 router.get('/', async (req, res) => {
@@ -45,6 +46,11 @@ router.put('/:userId', async (req, res) => {
         const verifiedUser = jwt.verify(token, process.env.TOKEN_SECRET);
         // If it's the wrong user
         if (req.params.userId != verifiedUser._id) res.status(403).send('Unauthorized operation.');
+        // Validate
+        const {error} = updateUserValidation(req.body);
+        if (error) {
+            return res.status(400).send(error.details[0].message);
+        }
         // Try update the user
         try {
             const updatedUser = await User.findOneAndUpdate(
