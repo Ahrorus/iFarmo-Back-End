@@ -88,6 +88,10 @@ response: {removed user object}
 
 ```
 GET: /api/products
+params: {
+    "searchKey": "someSearchWord",
+    "filter": "date_asc OR date_desc"
+}
 response: {all products}
 
 GET: /api/products/:productId

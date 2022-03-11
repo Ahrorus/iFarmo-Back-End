@@ -3,7 +3,7 @@ const Joi = require('@hapi/joi');
 // Register user validation
 const registerValidation = (data) => {
     const schema = Joi.object({
-        username: Joi.string().trim().min(8).max(30),
+        username: Joi.string().trim().min(5).max(30),
         name: Joi.string().trim().min(2).max(30).required(), 
         // role: Joi.string().trim().valid('user','farmer', 'worker'),
         email: Joi.string().trim().min(8).max(30).required().email(),
@@ -15,7 +15,7 @@ const registerValidation = (data) => {
 // Login user validation
 const loginValidation = (data) => {
     const schema = Joi.object({
-        login: Joi.string().trim().min(8).max(30).required(),
+        login: Joi.string().trim().min(5).max(30).required(),
         password: Joi.string().trim().min(8).max(30).required()
     });
     return schema.validate(data);
@@ -27,7 +27,7 @@ const updateUserValidation = (data) => {
         name: Joi.string().trim().min(2).max(30).required(), 
         role: Joi.string().trim().valid('user','farmer', 'worker'),
         bio: Joi.string().trim().min(0).max(250),
-        contactInfo: Joi.string().trim().min(0).max(30).required()
+        contactInfo: Joi.string().trim().min(0).max(30)
     });
     return schema.validate(data);
 };
@@ -39,9 +39,11 @@ const productValidation = (data) => {
         type: Joi.string().trim().min(2).max(10).required(),
         desc: Joi.string().trim().min(0).max(250),
         quantity: Joi.number(),
-        unit_type: Joi.string().trim().valid('lbs', 'kg', 'g', 'piece').required(),
-        price: Joi.number().required()
+        unitType: Joi.string().trim().valid('lbs', 'kg', 'g', 'piece').required(),
+        price: Joi.number().required(),
+        postedBy: Joi.string().required()
     });
+    return schema.validate(data);
 };
 
 

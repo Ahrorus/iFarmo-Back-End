@@ -21,7 +21,7 @@ const productSchema = mongoose.Schema({
         required: true,
         trim: true
     },
-    unit_type: {
+    unitType: {
         type: String,
         required: true,
         trim: true
