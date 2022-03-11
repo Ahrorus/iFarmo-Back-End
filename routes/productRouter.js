@@ -11,11 +11,11 @@ router.get('/', async (req, res) => {
         const filter = req.params.filter;
         if (!searchKey || searchKey == '') {
             if (!filter || filter == 'date_desc') {
-                const products = await Product.find().sort({ date: 'desc'});
+                const products = await Product.find().sort({ datePosted: 'desc'});
                 res.json(products);
             }
             else if (filter == 'date_asc') {
-                const products = await Product.find().sort({ date: 'asc'});
+                const products = await Product.find().sort({ datePosted: 'asc'});
                 res.json(products);
             }
         }
@@ -23,13 +23,13 @@ router.get('/', async (req, res) => {
             if (!filter || filter == 'date_desc') {
                 const products = await Product.find({ 
                     name: { $regex: searchKey, $options: 'i'}
-                }).sort({ date: 'desc'});
+                }).sort({ datePosted: 'desc'});
                 res.json(products);
             }
             else if (filter == 'date_asc') {
                 const products = await Product.find({ 
                     name: { $regex: searchKey, $options: 'i'}
-                }).sort({ date: 'asc'});
+                }).sort({ datePosted: 'asc'});
                 res.json(products);
             }
         }
