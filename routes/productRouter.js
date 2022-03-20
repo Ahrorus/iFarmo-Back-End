@@ -63,17 +63,18 @@ router.post('/', async (req, res) => {
     }
     const verifiedUser = jwt.verify(token, process.env.TOKEN_SECRET);
     // Verify the user is farmer
-    const user = await User.findById(verifiedUser._id);
-    if (user.role != 'farmer'){
-        return res.status(403).send('Unauthorized operation.');
-    }
-    // Validate input
-    const {error} = productValidation(req.body);
-    if (error) {
-        return res.status(400).send(error.details[0].message);
-    }
-    // Save the product
     try{
+        const user = await User.findById(verifiedUser._id);
+        if (user.role != 'farmer'){
+            return res.status(403).send('Unauthorized operation.');
+        }
+        // Validate input
+        const {error} = productValidation(req.body);
+        if (error) {
+            return res.status(400).send(error.details[0].message);
+        }
+        // Save the product
+    
         const newProduct = new Product({
             name: req.body.name,
             type: req.body.type,
