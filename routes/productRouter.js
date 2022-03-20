@@ -52,18 +52,19 @@ router.get('/:productId', async (req, res) => {
 
 // Create product post
 router.post('/', async (req, res) => {
-    // Get auth-token from header
-    const token = req.header('auth-token');
-    if (!token) return res.status(401).send('Access Denied. Token required.');
-    // Verify the token
-    try {
-        jwt.verify(token, process.env.TOKEN_SECRET);
-    } catch (err) {
-        res.status(400).send('Invalid token.');
-    }
-    const verifiedUser = jwt.verify(token, process.env.TOKEN_SECRET);
-    // Verify the user is farmer
     try{
+        // Get auth-token from header
+        const token = req.header('auth-token');
+        if (!token) return res.status(401).send('Access Denied. Token required.');
+        // Verify the token
+        try {
+            jwt.verify(token, process.env.TOKEN_SECRET);
+        } catch (err) {
+            res.status(400).send('Invalid token.');
+        }
+        const verifiedUser = jwt.verify(token, process.env.TOKEN_SECRET);
+        // Verify the user is farmer
+
         const user = await User.findById(verifiedUser._id);
         if (user.role != 'farmer'){
             return res.status(403).send('Unauthorized operation.');
