@@ -20,7 +20,6 @@ router.get('/:userId', async (req, res) => {
         res.json(user);
     } catch(err) {
         // If couldn't get the user
-        console.log('Could not find the user.');
         res.status(404).send('Could not find the user.');
     }
 });
@@ -61,33 +60,33 @@ router.put('/:userId', async (req, res) => {
         res.json(updatedUser);
     } catch(err) {
         // If couldn't update the user
-        console.log('Could not update the user.');
         res.status(404).send('Could not update the user.');
     }
 });
 
 // Delete a user by id
-router.delete('/:userId', async (req, res) => {
-    // Get auth-token from header
-    const token = req.header('auth-token');
-    if (!token) return res.status(401).send('Access Denied. Token required.');
-    // Verify the token
+router.delete('/', async (req, res) => {
     try {
-        jwt.verify(token, process.env.TOKEN_SECRET);
-    } catch (err) {
-        res.status(400).send('Invalid token.');
-    }
-    const verifiedUser = jwt.verify(token, process.env.TOKEN_SECRET);
-    // If it's the wrong user
-    if (req.params.userId != verifiedUser._id) res.status(403).send('Unauthorized operation.');
-    // Try delete the user
-    try {
-        const user = await User.findById(req.params.userId);
-        res.json(user);
+        // Get auth-token from header
+        const token = req.header('auth-token');
+        if (!token) return res.status(401).send('Access Denied. Token required.');
+        // Verify the token
+        try {
+            jwt.verify(token, process.env.TOKEN_SECRET);
+        } catch (err) {
+            res.status(400).send('Invalid token.');
+        }
+        const verifiedUser = jwt.verify(token, process.env.TOKEN_SECRET);
+        // Try delete the user
+        try {
+            const user = await User.findByIdAndDelete(verifiedUser._id);
+            res.json(user);
+        } catch(err) {
+            // If couldn't delete the user
+            res.status(404).send('Could not delete the user.');
+        }
     } catch(err) {
-        // If couldn't delete the user
-        console.log('Could not delete the user.');
-        res.status(404).send('Could not delete the user.');
+        res.json({message: err});
     }
 });
 
