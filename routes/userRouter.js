@@ -15,24 +15,13 @@ router.get('/', async (req, res) => {
 
 // Get a signle user by id
 router.get('/:userId', async (req, res) => {
-    // Get auth-token from header
-    const token = req.header('auth-token');
-    if (!token) return res.status(401).send('Access Denied. Token required.');
     try {
-        // Verify the token
-        const verifiedUser = jwt.verify(token, process.env.TOKEN_SECRET);
-        // Try get the user
-        try {
-            const user = await User.findById(req.params.userId);
-            res.json(user);
-        } catch(err) {
-            // If couldn't get the user
-            console.log('Could not find the user.');
-            res.status(404).send('Could not find the user.');
-        }
-    } catch (err) {
-        // If the token is wrong
-        res.status(400).send('Invalid token.');
+        const user = await User.findById(req.params.userId);
+        res.json(user);
+    } catch(err) {
+        // If couldn't get the user
+        console.log('Could not find the user.');
+        res.status(404).send('Could not find the user.');
     }
 });
 
@@ -53,7 +42,7 @@ router.put('/:userId', async (req, res) => {
     // Validate
     const {error} = updateUserValidation(req.body);
     if (error) {
-        return res.status(400).send(error.details[0].message);
+        return res.status(403).send(error.details[0].message);
     }
     console.log(req.params.userId);
     // Try update the user

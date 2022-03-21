@@ -10,7 +10,7 @@ router.post('/register', async (req, res) => {
     // Validate
     const {error} = registerValidation(req.body);
     if (error) {
-        return res.status(400).send(error.details[0].message);
+        return res.status(403).send(error.details[0].message);
     }
     // Check if the email already exists
     const emailExists = await User.findOne({email: req.body.email});
@@ -42,7 +42,7 @@ router.post('/register', async (req, res) => {
 router.post('/login', async (req, res) => {
     // Validate
     const {error} = loginValidation(req.body);
-    if (error) return res.status(400).send(error.details[0].message);
+    if (error) return res.status(403).send(error.details[0].message);
     // Check if the login as email or username exists
     const user = await User.findOne({email: req.body.login}) || 
                  await User.findOne({username: req.body.login});
@@ -53,20 +53,6 @@ router.post('/login', async (req, res) => {
     // Create and assign a token
     const token = jwt.sign({_id: user._id}, process.env.TOKEN_SECRET);
     res.header('auth-token', token).send(token);
-});
-
-//logout
-router.get('/logout', (req, res, next) => {
-    if(req.session){
-        req.session.destroy();
-        res.clearCookie('session-id')
-        res.redirect('/'); //go back to login/default page
-    }
-    else{
-        var err = new Error('You are not logged in!');
-        err.status = 403;
-        next(err);
-    }
 });
 
 module.exports = router;
