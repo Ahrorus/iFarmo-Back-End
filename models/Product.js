@@ -3,33 +3,31 @@ const mongoose = require('mongoose');
 const productSchema = mongoose.Schema({
     name: {
         type: String,
-        required: true,
-        trim: true
+        trim: true,
+        required: true
     },
     type: {
         type: String,
-        required: true,
-        trim: true
+        trim: true,
+        required: true
     },
-    desc: {
+    description: {
         type: String,
-        required: true,
-        trim: true
+        trim: true,
+        required: false
     },
     quantity: {
         type: Number,
-        required: true,
-        trim: true
+        required: false
     },
-    unit_type: {
+    unitType: {
         type: String,
-        required: true,
-        trim: true
+        trim: true,
+        required: true
     },
     price: {
         type: Number,
-        required: true,
-        trim: true
+        required: true
     },
     datePosted: {
         type: Date,
@@ -37,7 +35,8 @@ const productSchema = mongoose.Schema({
         default: Date.now
     },
     postedBy: {
-        type: mongoose.Schema.Types.ObjectId,
+        type:  mongoose.Schema.Types.ObjectId,
+        ref: 'User',
         required: true
     }
 });
