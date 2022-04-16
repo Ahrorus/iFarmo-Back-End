@@ -37,15 +37,28 @@ router.get('/:equipmentId', async (req, res) => {
 });
 
 router.post('/', async (req, res) => {
+    const token = req.header('auth-token');
+    if (!token) {
+        return res.status(401).send('Access Denied. Token required.');
+    }    
     try{
+        const verifiedUser = jwt.verify(token, process.env.TOKEN_SECRET);
+        const user = await User.findById(verifiedUser._id);
+        if(user.role != "farmer"){
+            return res.status(403).send("Unauthorized Operation. Must be a farmer to list a job");
+        }
         const newEquipment = new Equipment({
             title: req.body.title,
             desc: req.body.desc,
-            quantity: req.body.quantity,
             price: req.body.price,
+            type: req.body.unitType,
+            quantity: req.body.quantity,
+            unitType: req.body.unitType,
             datePosted: req.body.datePosted,
-            postedBy: req.body.postedBy
+            postedBy: verifiedUser._id
         })
+        const savedEquipment = await newEquipment.save();
+        res.send({savedEquipment: savedEquipment._id})
     }
     catch(err){
         res.json({message: err});
@@ -53,15 +66,26 @@ router.post('/', async (req, res) => {
 });
 
 router.patch('/:equipmentId', (req, res) => {
+    const token = req.header('auth-token');
+    if (!token) {
+        return res.status(401).send('Access Denied. Token required.');
+    }    
     try{
+        const verifiedUser = jwt.verify(token, process.env.TOKEN_SECRET);
+        const user = await User.findById(verifiedUser._id);
+        if(user.role != "farmer"){
+            return res.status(403).send("Unauthorized Operation. Must be a farmer to list a job");
+        }
         const equipment = Equipment.updateOne(
             {_id: req.params.equipmentId}, {$set: {
                 title: req.body.title,
                 desc: req.body.desc,
-                quantity: req.body.quantity,
                 price: req.body.price,
+                type: req.body.unitType,
+                quantity: req.body.quantity,
+                unitType: req.body.unitType,
                 datePosted: req.body.datePosted,
-                postedBy: req.body.postedBy
+                postedBy: verifiedUser._id
             }}
         );
         res.json(updatedEquipment);
@@ -72,7 +96,16 @@ router.patch('/:equipmentId', (req, res) => {
 });
 
 router.delete('/:equipmentId', (req, res) => {
+    const token = req.header('auth-token');
+    if (!token) {
+        return res.status(401).send('Access Denied. Token required.');
+    }    
     try{
+        const verifiedUser = jwt.verify(token, process.env.TOKEN_SECRET);
+        const user = await User.findById(verifiedUser._id);
+        if(user.role != "farmer"){
+            return res.status(403).send("Unauthorized Operation. Must be a farmer to list a job");
+        }
         const deletedEquipment = await Equipment.deleteOne({_id: req.params.equipmentId});
         res.json(deletedEquipment);
     }

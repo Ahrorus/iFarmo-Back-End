@@ -55,7 +55,7 @@ router.post('/', async (req, res) => {
             desc: req.body.desc,
             salary: req.body.salary,
             timeUnit: req.body.timeUnit,
-            postedBy: req.body.postedBy
+            postedBy: verifiedUser._id
         })
         const savedJob = await newJob.save();
         res.send({savedJob: savedJob._id});
@@ -83,7 +83,7 @@ router.patch('/:jobId', async (req, res) => {
                 desc: req.body.desc,
                 salary: req.body.salary,
                 timeUnit: req.body.timeUnit,
-                postedBy: req.body.postedBy
+                postedBy: verifiedUser._id
             }}
         );
         res.json(updatedJob);

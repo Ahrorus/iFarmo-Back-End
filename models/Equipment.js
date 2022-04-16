@@ -16,6 +16,21 @@ const equipmentSchema = mongoose.Schema({
         required: true,
         trim: true
     },
+    type: {
+        type: String,
+        required: true,
+        trim: true
+    },
+    quantity: {
+        type: Number,
+        required: true,
+        trim: true
+    },
+    unitType: {
+        type: String,
+        required: true,
+        trim: true
+    },
     datePosted: {
         type: Date,
         required: true,
