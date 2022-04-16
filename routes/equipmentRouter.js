@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const Equipment = require('../models/Equipment');
-
+/* */
 router.get('/', async (req, res) => {
     try{//
         if(req.params.queryString == ""){ //default
