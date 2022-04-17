@@ -50,20 +50,22 @@ router.post('/', async (req, res) => {
             return res.status(403).send("Unauthorized Operation. Must be a farmer to list a job");
         }
         const newJob = new Job({
-            name: req.body.name,
             type: req.body.type,
+            title: req.body.title,
             desc: req.body.desc,
-            quantity: req.body.quantity,
-            unit_type: req.body.unit_type,
-            price: req.body.price
+            salary: req.body.salary,
+            timeUnit: req.body.timeUnit,
+            postedBy: verifiedUser._id
         })
+        const savedJob = await newJob.save();
+        res.send({savedJob: savedJob._id});
     }
     catch(err){
         res.json({message: err});
     }
 });
 
-router.patch('/:jobId', (req, res) => {
+router.patch('/:jobId', async (req, res) => {
     const token = req.header('auth-token');
     if (!token) {
         return res.status(401).send('Access Denied. Token required.');
@@ -81,8 +83,7 @@ router.patch('/:jobId', (req, res) => {
                 desc: req.body.desc,
                 salary: req.body.salary,
                 timeUnit: req.body.timeUnit,
-                datePosted: req.body.datePosted,
-                postedBy: req.body.postedBy
+                postedBy: verifiedUser._id
             }}
         );
         res.json(updatedJob);
@@ -92,7 +93,7 @@ router.patch('/:jobId', (req, res) => {
     }
 });
 
-router.delete('/:jobId', (req, res) => {
+router.delete('/:jobId', async (req, res) => {
     const token = req.header('auth-token');
     if (!token) {
         return res.status(401).send('Access Denied. Token required.');

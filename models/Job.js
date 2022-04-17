@@ -13,7 +13,7 @@ const jobSchema = mongoose.Schema({
     },
     desc: {
         type: String,
-        required: true,
+        required: false,
         trim: true
     },
     salary: {
@@ -37,4 +37,4 @@ const jobSchema = mongoose.Schema({
     }
 });
 
-module.exports('Job', jobSchema);
+module.exports = mongoose.model('Job', jobSchema);
