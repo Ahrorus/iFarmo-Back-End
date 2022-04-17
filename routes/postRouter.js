@@ -32,7 +32,7 @@ router.post('/', async (req, res) => {
     }
 });
 
-router.patch('/:postId', async (req, res) => {
+router.put('/:postId', async (req, res) => {
     try {
         const updatedPost = await Post.updateOne(
             {_id: req.params.postId}, {$set: {
