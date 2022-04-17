@@ -8,7 +8,7 @@ const equipmentSchema = mongoose.Schema({
     },
     desc: {
         type: String,
-        required: true,
+        required: false,
         trim: true
     },
     price: {
@@ -23,7 +23,7 @@ const equipmentSchema = mongoose.Schema({
     },
     quantity: {
         type: Number,
-        required: true,
+        required: false,
         trim: true
     },
     unitType: {
