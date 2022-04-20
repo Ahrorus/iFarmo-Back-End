@@ -1,0 +1,14 @@
+[
+{
+    "title": "Tractor",
+    "type": "Tools",
+    "description": "A tractor is a vehicle that is used to pull or push a material or crop from a field, or to pull or push a material or crop from a mine.",
+    "quantity": 1,
+    "unitType": "week",
+    "price": 1000.00,
+    "city": "San Jose"
+},
+{
+    
+}
+]

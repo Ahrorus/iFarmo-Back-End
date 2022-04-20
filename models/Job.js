@@ -11,7 +11,7 @@ const jobSchema = mongoose.Schema({
         required: true,
         trim: true
     },
-    desc: {
+    description: {
         type: String,
         required: false,
         trim: true
@@ -21,7 +21,12 @@ const jobSchema = mongoose.Schema({
         required: true,
         trim: true
     },
-    timeUnit: {
+    unitType: {
+        type: String,
+        required: true,
+        trim: true
+    },
+    city: {
         type: String,
         required: true,
         trim: true
@@ -33,6 +38,7 @@ const jobSchema = mongoose.Schema({
     },
     postedBy: {
         type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
         required: true
     }
 });

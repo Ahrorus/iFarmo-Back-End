@@ -29,6 +29,11 @@ const productSchema = mongoose.Schema({
         type: Number,
         required: true
     },
+    city: {
+        type: String,
+        trim: true,
+        required: true
+    },
     datePosted: {
         type: Date,
         required: true,

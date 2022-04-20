@@ -84,19 +84,21 @@ router.post('/', async (req, res) => {
                 quantity: req.body.quantity,
                 unitType: req.body.unitType,
                 price: req.body.price,
+                city: req.body.city,
                 postedBy: verifiedUser._id
             });
             const savedProduct = await newProduct.save();
             user.products = user.products.concat(savedProduct);
             await user.save();
-            res.send({ product: savedProduct._id });
+            res.send(savedProduct);
         }
         catch(err) {
             return res.status(404).send("Could not save the product.");
         }
     }
     catch(err){
-        res.json({message: err});
+        console.log(err);
+        return res.status(404).send("Could not create the product.");
     }
 });
 
@@ -105,9 +107,7 @@ router.put('/:productId', async (req, res) => {
     try {
         // Get auth-token from header
         const token = req.header('auth-token');
-        if(!token){
-            return res.status(401).send('Access denied. Token required');
-        }
+        if(!token) return res.status(401).send('Access denied. Token required');
         // Verify the token
         try {
             jwt.verify(token, process.env.TOKEN_SECRET);
@@ -115,24 +115,19 @@ router.put('/:productId', async (req, res) => {
             res.status(400).send('Invalid token.');
         }
         const verifiedUser = jwt.verify(token, process.env.TOKEN_SECRET);
-        // // Verify product exists
-        // const product = await Product.findById(req.params.productId);
-        // if (!product) return res.status(404).send('Product not found.');
-        // // Verify it's from the same farmer
-        // if (verifiedUser._id != product.created_by) {
-        //     return res.status(403).send('Unauthorized operation.');
-        // }
-        // Verify it's from the same farmer
+        // Verify the product exists
         const product = await Product.findById(req.params.productId);
+        if (!product) return res.status(404).send('Product not found.');
+        // Verify it's from the same farmer
         if (verifiedUser._id != product.postedBy) {
-            return res.status(403).send('Unauthorized operation.');
+            return res.status(403).send('Unauthorized operation. You are not the owner of this product.');
         }
         // Validate
         const {error} = productValidation(req.body);
         if (error) {
             return res.status(403).send(error.details[0].message);
         }
-        // Update product
+        // Update the product
         try {
             await Product.updateOne(
                 {_id: req.params.productId}, {$set: {
@@ -149,12 +144,11 @@ router.put('/:productId', async (req, res) => {
             res.json(updatedProduct);
         }
         catch(err){
-            // If couldn't update the user
-            res.status(404).send('Could not update the product.');
+            res.status(404).send('Could not save the product.');
         }
     }
     catch(err){
-        res.json({message: err});
+        res.status(404).send('Could not update the product.');
     }
 });
 
@@ -182,7 +176,6 @@ router.delete('/:productId', async (req, res) => {
         // Delete product
         try{
             await Product.deleteOne({_id: req.params.productId});
-            console.log(user.products);
             user.products = user.products.filter((value) => String(value) !== String(product._id));
             await user.save();
             res.json(product);
@@ -192,7 +185,23 @@ router.delete('/:productId', async (req, res) => {
         }
     }
     catch(err){
-        res.json({message: err});
+        console.log(err);
+        res.status(404).send('Could not delete the product.');
+    }
+});
+
+// For testing purposes
+// Delete all products
+router.delete('/', async (req, res) => {
+    try {
+        const key = req.query.key;
+        if (key != "123") return res.status(403).send("Unauthorized operation.");
+        await Product.deleteMany({});
+        await User.updateMany({}, {$set: {products: []}});
+        res.send("Successfully deleted all products.");
+    }
+    catch(err){
+        return res.status(404).send("Could not delete all products.");
     }
 });
 
