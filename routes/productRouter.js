@@ -167,9 +167,11 @@ router.delete('/:productId', async (req, res) => {
             res.status(400).send('Invalid token.');
         }
         const verifiedUser = jwt.verify(token, process.env.TOKEN_SECRET);
+        // Verify the product exists
+        const product = await Product.findById(req.params.productId);
+        if (!product) return res.status(404).send('Product not found.');
         // Verify it's from the same farmer
         const user = await User.findById(verifiedUser._id);
-        const product = await Product.findById(req.params.productId);
         if (verifiedUser._id != product.postedBy) {
             return res.status(403).send('Unauthorized operation.');
         }

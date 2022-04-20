@@ -4,10 +4,15 @@
     "type": "temporary",
     "description": "I need to collect some apricots for my family.",
     "unitType": "day",
-    "salary": "100",
+    "salary": 100,
     "city": "San Jose"
 },
 {
-    
+    "title": "",
+    "type": "part-time",
+    "description": "",
+    "unitType": "hour",
+    "salary": 10,
+    "city": ""
 }
 ]

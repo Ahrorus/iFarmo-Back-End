@@ -1,12 +1,12 @@
 const mongoose = require('mongoose');
 
 const jobSchema = mongoose.Schema({
-    type: {
+    title: {
         type: String,
         required: true,
         trim: true
     },
-    title: {
+    type: {
         type: String,
         required: true,
         trim: true

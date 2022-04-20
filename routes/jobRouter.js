@@ -83,7 +83,7 @@ router.post('/', async (req, res) => {
                 type: req.body.type,
                 salary: req.body.salary,
                 unitType: req.body.unitType,
-                city: req.body.location,
+                city: req.body.city,
                 postedBy: user._id
             });
             const savedJob = await job.save();
@@ -118,7 +118,7 @@ router.put('/:jobId', async (req, res) => {
         const job = await Job.findById(req.params.jobId);
         if (!job) return res.status(404).send("Could not find the job.");
         // Verify it's from the same farmer
-        if (job.postedBy.toString() != verifiedUser.id) {
+        if (job.postedBy.toString() != verifiedUser._id) {
             return res.status(403).send("Unauthorized operation. You are not the owner of this job.");
         }
         // Validate the data
@@ -166,13 +166,14 @@ router.delete('/:jobId', async (req, res) => {
         const job = await Job.findById(req.params.jobId);
         if (!job) return res.status(404).send("Could not find the job.");
         // Verify it's from the same farmer
-        if (job.postedBy.toString() != verifiedUser.id) {
+        const user = await User.findById(verifiedUser._id);
+        if (job.postedBy.toString() != verifiedUser._id) {
             return res.status(403).send("Unauthorized operation. You are not the owner of this job.");
         }
         // Delete the job
         try {
             await Job.deleteOne({_id: req.params.jobId});
-            user.jobs = user.jobs.filter((value) => String(value) !== String(product._id));
+            user.jobs = user.jobs.filter((value) => String(value) !== String(job._id));
             await user.save();
             res.json(job);
         }
