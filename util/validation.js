@@ -49,7 +49,7 @@ const productValidation = (data) => {
 // Job validation
 const jobValidation = (data) => {
     const schema = Joi.object({
-        title: Joi.string().trim().min(2).max(20).required(),
+        title: Joi.string().trim().min(2).max(30).required(),
         type: Joi.string().trim().required().valid('temporary', 'full-time', 'part-time'),
         description: Joi.string().trim().max(250).allow(null, ''),
         salary: Joi.number().positive(),
@@ -62,7 +62,7 @@ const jobValidation = (data) => {
 // Eqipment validation
 const equipmentValidation = (data) => {
     const schema = Joi.object({
-        title: Joi.string().trim().min(2).max(20).required(),
+        title: Joi.string().trim().min(2).max(30).required(),
         type: Joi.string().trim().required().valid('Tools', 'Materials'),
         description: Joi.string().trim().max(250).allow(null, ''),
         quantity: Joi.number().positive(),

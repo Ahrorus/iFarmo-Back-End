@@ -23,13 +23,21 @@ router.get('/', async (req, res) => {
             const regex = new RegExp(searchKey, "i");
             if (!filter || filter == 'by_date') {
                 const jobs = await Job.find({ 
-                    title: regex
+                    $or: [
+                        { title: regex },
+                        { description: regex },
+                        { city: regex }
+                    ]
                 }).sort({ datePosted: 'desc'}).populate('postedBy', 'username name email contactInfo');
                 res.json(jobs);
             }
             else if (filter == 'by_salary') {
                 const jobs = await Job.find({ 
-                    title: regex
+                    $or: [
+                        { title: regex },
+                        { description: regex },
+                        { city: regex }
+                    ]
                 }).sort({ salary: 'asc'}).populate('postedBy', 'username name email contactInfo');
                 res.json(jobs);
             }

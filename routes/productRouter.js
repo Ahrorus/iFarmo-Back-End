@@ -23,13 +23,21 @@ router.get('/', async (req, res) => {
             const regex = new RegExp(searchKey, "i");
             if (!filter || filter == 'by_date') {
                 const products = await Product.find({ 
-                    name: regex
+                    $or: [
+                        { name: regex },
+                        { description: regex },
+                        { city: regex }
+                    ]
                 }).sort({ datePosted: 'desc'}).populate('postedBy', 'username name email contactInfo');
                 res.json(products);
             }
             else if (filter == 'by_price') {
                 const products = await Product.find({ 
-                    name: regex
+                    $or: [
+                        { name: regex },
+                        { description: regex },
+                        { city: regex }
+                    ]
                 }).sort({ price: 'asc'}).populate('postedBy', 'username name email contactInfo');
                 res.json(products);
             }
@@ -169,7 +177,7 @@ router.delete('/:productId', async (req, res) => {
         const verifiedUser = jwt.verify(token, process.env.TOKEN_SECRET);
         // Verify the product exists
         const product = await Product.findById(req.params.productId);
-        if (!product) return res.status(404).send('Product not found.');
+        if (!product) return res.status(404).send('Could not find the product.');
         // Verify it's from the same farmer
         const user = await User.findById(verifiedUser._id);
         if (verifiedUser._id != product.postedBy) {
