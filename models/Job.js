@@ -18,12 +18,12 @@ const jobSchema = mongoose.Schema({
     },
     salary: {
         type: Number,
-        required: true,
+        required: false,
         trim: true
     },
     unitType: {
         type: String,
-        required: true,
+        required: false,
         trim: true
     },
     city: {
