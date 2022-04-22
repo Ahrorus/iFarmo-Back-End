@@ -1,0 +1,128 @@
+[
+{
+    "name": "Dragon Fruit",
+    "type": "Fruit",
+    "quantity": 1,
+    "unitType": "lb",
+    "price": 4.20,
+    "description": "Ripe",
+    "city": "San Jose"
+},
+{
+    "name": "Apples",
+    "type": "Fruit",
+    "quantity": 100,
+    "unitType": "lb",
+    "price": 2.50,
+    "description": "Sweet apples from Sweet Apple Acres.",
+    "city": "Cupertino"
+},
+{
+    "name": "Green apples",
+    "type": "Fruit",
+    "quantity": 50,
+    "unitType": "lb",
+    "price": 2.00,
+    "description": "Sweet and sour apples from Sweet Apple Acres.",
+    "city": "Cupertino"
+},
+{
+    "name": "Melons",
+    "type": "Fruit",
+    "quantity": 200,
+    "unitType": "lb",
+    "price": 1.00,
+    "description": "Big juicy melons from Altos Family Farm.",
+    "city": "Los Altos"
+},
+{
+    "name": "Carrots",
+    "type": "Vegetable",
+    "quantity": 60,
+    "unitType": "lb",
+    "price": 1.20,
+    "description": "Fresh carrots from the farm. Great for salads.",
+    "city": "Sunnyvale"
+},
+{
+    "name": "Fresh Milk",
+    "type": "Dairy",
+    "quantity": 40,
+    "unitType": "gal",
+    "price": 3.00,
+    "description": "Hot sale! Fresh milk from the Cow Farm in Sunnyvale.",
+    "city": "Sunnyvale"
+},
+{
+    "name": "Cheddar Cheese",
+    "type": "Dairy",
+    "quantity": 20,
+    "unitType": "lb",
+    "price": 19.50,
+    "description": "Cheddar cheese from the Cow Farm in Sunnyvale.",
+    "city": "Sunnyvale"
+},
+{
+    "name": "Pistachio",
+    "type": "Nuts",
+    "quantity": 20,
+    "unitType": "lb",
+    "price": 20.00,
+    "description": "Deetz Farm's finest pistachios.",
+    "city": "San Jose"
+},
+{
+    "name": "Pecan Butter",
+    "type": "Dairy",
+    "quantity": 20,
+    "unitType": "lb",
+    "price": 20.00,
+    "description": "Deetz Farm's finest pecan butter.",
+    "city": "San Jose"
+},
+{
+    "name": "Sweet potatoes",
+    "type": "Vegetable",
+    "quantity": 100,
+    "unitType": "lb",
+    "price": 1.00,
+    "description": "",
+    "city": "San Jose"
+},
+{
+    "name": "Celery",
+    "type": "Vegetable",
+    "quantity": 100,
+    "unitType": "lb",
+    "price": 1.00,
+    "description": "'Celery! CELERY!' - Celeryjack.",
+    "city": "San Jose"
+},
+{
+    "name": "Deetz Nuts",
+    "type": "Nuts",
+    "quantity": 69,
+    "unitType": "lb",
+    "price": 4.20,
+    "description": "Deetz Farm's finest pistachios.",
+    "city": "San Jose"
+},
+{
+    "name": "Apple sauce",
+    "type": "Fruit",
+    "quantity": 100,
+    "unitType": "piece",
+    "price": 5.00,
+    "description": "Sweet apple sauce from Sweet Apple Acres.",
+    "city": "Cupertino"
+},
+{
+    "name": "Applejack apples",
+    "type": "Fruit",
+    "quantity": 100,
+    "unitType": "piece",
+    "price": 5.00,
+    "description": "Sweet Applejack-sort apples from Sweet Apple Acres.",
+    "city": "Cupertino"
+}
+]

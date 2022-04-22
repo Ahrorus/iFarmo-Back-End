@@ -6,14 +6,9 @@ const equipmentSchema = mongoose.Schema({
         required: true,
         trim: true
     },
-    desc: {
+    description: {
         type: String,
         required: false,
-        trim: true
-    },
-    price: {
-        type: Number,
-        required: true,
         trim: true
     },
     type: {
@@ -31,6 +26,16 @@ const equipmentSchema = mongoose.Schema({
         required: true,
         trim: true
     },
+    price: {
+        type: Number,
+        required: true,
+        trim: true
+    },
+    city: {
+        type: String,
+        required: true,
+        trim: true
+    },
     datePosted: {
         type: Date,
         required: true,
@@ -38,6 +43,7 @@ const equipmentSchema = mongoose.Schema({
     },
     postedBy: {
         type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
         required: true
     }
 });
