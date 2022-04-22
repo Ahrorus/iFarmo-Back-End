@@ -38,9 +38,9 @@ const productValidation = (data) => {
         name: Joi.string().trim().min(2).max(20).required(),
         type: Joi.string().trim().required().valid('Fruit', 'Vegetable', 'Grains', 'Nuts', 'Meat', 'Dairy', 'Baked goods', 'Plants', 'Other'),
         description: Joi.string().trim().max(250).allow(null, ''),
-        quantity: Joi.number().positive(),
+        quantity: Joi.number().positive().default(0),
         unitType: Joi.string().trim().required().valid('lb', 'kg', 'g', 'gal', 'litre', 'piece'),
-        price: Joi.number().required().positive(),
+        price: Joi.number().required().positive().default(0),
         city: Joi.string().trim().min(2).max(30)
     });
     return schema.validate(data);
@@ -50,10 +50,10 @@ const productValidation = (data) => {
 const jobValidation = (data) => {
     const schema = Joi.object({
         title: Joi.string().trim().min(2).max(30).required(),
-        type: Joi.string().trim().required().valid('temporary', 'full-time', 'part-time'),
+        type: Joi.string().trim().required().valid('temporary', 'full-time', 'part-time', 'any'),
         description: Joi.string().trim().max(250).allow(null, ''),
-        salary: Joi.number().positive(),
-        unitType: Joi.string().trim().required().valid('one-time', 'hour', 'day', 'week', 'month'),
+        salary: Joi.number().positive().default(0),
+        unitType: Joi.string().trim().valid('one-time', 'hour', 'day', 'week', 'month', '').allow(null, ''),
         city: Joi.string().trim().min(2).max(30)
     });
     return schema.validate(data);
@@ -63,11 +63,11 @@ const jobValidation = (data) => {
 const equipmentValidation = (data) => {
     const schema = Joi.object({
         title: Joi.string().trim().min(2).max(30).required(),
-        type: Joi.string().trim().required().valid('Tools', 'Materials'),
+        type: Joi.string().trim().required().valid('Tools', 'Materials', 'Other'),
         description: Joi.string().trim().max(250).allow(null, ''),
-        quantity: Joi.number().positive(),
-        unitType: Joi.string().trim().required().valid('lb', 'kg', 'g', 'piece', 'hour', 'day', 'week', 'month'),
-        price: Joi.number().required().positive(),
+        quantity: Joi.number().positive().default(0),
+        unitType: Joi.string().trim().valid('lb', 'kg', 'g', 'piece', 'hour', 'day', 'week', 'month').allow(null, ''),
+        price: Joi.number().required().positive().default(0),
         city: Joi.string().trim().min(2).max(30)
     });
     return schema.validate(data);

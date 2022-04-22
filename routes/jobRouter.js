@@ -11,11 +11,11 @@ router.get('/', async (req, res) => {
         const filter = req.query.filter;
         if (!searchKey || searchKey == '') {
             if (!filter || filter == 'by_date') {
-                const jobs = await Job.find().sort({ datePosted: 'desc'}).populate('postedBy', 'username name email contactInfo');
+                const jobs = await Job.find().sort({ datePosted: 'desc'}).populate('postedBy', 'username name email contactInfo role');
                 res.json(jobs);
             }
             else if (filter == 'by_salary') {
-                const jobs = await Job.find().sort({ salary: 'asc'}).populate('postedBy', 'username name email contactInfo');
+                const jobs = await Job.find().sort({ salary: 'asc'}).populate('postedBy', 'username name email contactInfo role');
                 res.json(jobs);
             }
         }
@@ -28,7 +28,7 @@ router.get('/', async (req, res) => {
                         { description: regex },
                         { city: regex }
                     ]
-                }).sort({ datePosted: 'desc'}).populate('postedBy', 'username name email contactInfo');
+                }).sort({ datePosted: 'desc'}).populate('postedBy', 'username name email contactInfo role');
                 res.json(jobs);
             }
             else if (filter == 'by_salary') {
@@ -38,7 +38,7 @@ router.get('/', async (req, res) => {
                         { description: regex },
                         { city: regex }
                     ]
-                }).sort({ salary: 'asc'}).populate('postedBy', 'username name email contactInfo');
+                }).sort({ salary: 'asc'}).populate('postedBy', 'username name email contactInfo role');
                 res.json(jobs);
             }
         }
@@ -75,7 +75,7 @@ router.post('/', async (req, res) => {
         const verifiedUser = jwt.verify(token, process.env.TOKEN_SECRET);
         // Verify the user is farmer
         const user = await User.findById(verifiedUser._id);
-        if (user.role != 'farmer'){
+        if (user.role == 'user') {
             return res.status(403).send('Unauthorized operation.');
         }
         // Validate input
@@ -89,8 +89,8 @@ router.post('/', async (req, res) => {
                 title: req.body.title,
                 description: req.body.description,
                 type: req.body.type,
-                salary: req.body.salary,
-                unitType: req.body.unitType,
+                salary: req.body.salary ? req.body.salary : 0,
+                unitType: req.body.unitType ? req.body.unitType : '',
                 city: req.body.city,
                 postedBy: user._id
             });
