@@ -8,11 +8,26 @@ const equipmentSchema = mongoose.Schema({
     },
     desc: {
         type: String,
-        required: true,
+        required: false,
         trim: true
     },
     price: {
         type: Number,
+        required: true,
+        trim: true
+    },
+    type: {
+        type: String,
+        required: true,
+        trim: true
+    },
+    quantity: {
+        type: Number,
+        required: false,
+        trim: true
+    },
+    unitType: {
+        type: String,
         required: true,
         trim: true
     },

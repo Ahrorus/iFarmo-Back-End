@@ -38,12 +38,13 @@ const productValidation = (data) => {
         name: Joi.string().trim().min(2).max(20).required(),
         type: Joi.string().trim().min(2).max(10).required(),
         description: Joi.string().trim().max(250).allow(null, ''),
-        quantity: Joi.number(),
+        quantity: Joi.number().positive(),
         unitType: Joi.string().trim().valid('lb', 'kg', 'g', 'piece').required(),
-        price: Joi.number().required()
+        price: Joi.number().required().positive()
     });
     return schema.validate(data);
 };
+
 
 
 module.exports.registerValidation = registerValidation;

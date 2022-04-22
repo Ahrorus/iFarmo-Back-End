@@ -40,19 +40,23 @@ router.post('/register', async (req, res) => {
 
 // Login
 router.post('/login', async (req, res) => {
-    // Validate
-    const {error} = loginValidation(req.body);
-    if (error) return res.status(403).send(error.details[0].message);
-    // Check if the login as email or username exists
-    const user = await User.findOne({email: req.body.login}) || 
-                 await User.findOne({username: req.body.login});
-    if (!user) return res.status(400).send('User does not exist.');
-    // Check if the password is correct
-    const validPassword = await bcrypt.compare(req.body.password, user.password);
-    if (!validPassword) return res.status(400).send('Invalid password.');
-    // Create and assign a token
-    const token = jwt.sign({_id: user._id}, process.env.TOKEN_SECRET);
-    res.header('auth-token', token).send(token);
+    try {
+        // Validate
+        const {error} = loginValidation(req.body);
+        if (error) return res.status(403).send(error.details[0].message);
+        // Check if the login as email or username exists
+        const user = await User.findOne({email: req.body.login}) || 
+                    await User.findOne({username: req.body.login});
+        if (!user) return res.status(400).send('User does not exist.');
+        // Check if the password is correct
+        const validPassword = await bcrypt.compare(req.body.password, user.password);
+        if (!validPassword) return res.status(400).send('Invalid password.');
+        // Create and assign a token
+        const token = jwt.sign({_id: user._id}, process.env.TOKEN_SECRET);
+        res.header('auth-token', token).send(token);
+    } catch(err) {
+        res.status(404).send('Unable to login.');
+    }
 });
 
 module.exports = router;

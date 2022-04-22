@@ -11,11 +11,11 @@ router.get('/', async (req, res) => {
         const filter = req.query.filter;
         if (!searchKey || searchKey == '') {
             if (!filter || filter == 'by_date') {
-                const products = await Product.find().sort({ datePosted: 'desc'}).populate('postedBy', 'username name');
+                const products = await Product.find().sort({ datePosted: 'desc'}).populate('postedBy', 'username name email contactInfo');
                 res.json(products);
             }
             else if (filter == 'by_price') {
-                const products = await Product.find().sort({ price: 'asc'}).populate('postedBy', 'username name');
+                const products = await Product.find().sort({ price: 'asc'}).populate('postedBy', 'username name email contactInfo');
                 res.json(products);
             }
         }
@@ -24,13 +24,13 @@ router.get('/', async (req, res) => {
             if (!filter || filter == 'by_date') {
                 const products = await Product.find({ 
                     name: regex
-                }).sort({ datePosted: 'desc'}).populate('postedBy', 'username name');
+                }).sort({ datePosted: 'desc'}).populate('postedBy', 'username name email contactInfo');
                 res.json(products);
             }
             else if (filter == 'by_price') {
                 const products = await Product.find({ 
                     name: regex
-                }).sort({ price: 'asc'}).populate('postedBy', 'username name');
+                }).sort({ price: 'asc'}).populate('postedBy', 'username name email contactInfo');
                 res.json(products);
             }
         }
