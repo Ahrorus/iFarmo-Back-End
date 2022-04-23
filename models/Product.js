@@ -34,6 +34,11 @@ const productSchema = mongoose.Schema({
         trim: true,
         required: true
     },
+    imagePath: {
+        type: String,
+        trim: true,
+        required: false
+    },
     datePosted: {
         type: Date,
         required: true,
