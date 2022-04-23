@@ -26,6 +26,7 @@ router.get('/', async (req, res) => {
                     $or: [
                         { title: regex },
                         { description: regex },
+                        { type: regex },
                         { city: regex }
                     ]
                 }).sort({ datePosted: 'desc'}).populate('postedBy', 'username name email contactInfo role');
@@ -36,6 +37,7 @@ router.get('/', async (req, res) => {
                     $or: [
                         { title: regex },
                         { description: regex },
+                        { type: regex },
                         { city: regex }
                     ]
                 }).sort({ salary: 'asc'}).populate('postedBy', 'username name email contactInfo role');
@@ -139,8 +141,8 @@ router.put('/:jobId', async (req, res) => {
                     title: req.body.title,
                     description: req.body.description,
                     type: req.body.type,
-                    salary: req.body.salary,
-                    unitType: req.body.unitType,
+                    salary: req.body.salary ? req.body.salary : 0,
+                    unitType: req.body.unitType ? req.body.unitType : '',
                     city: req.body.location
                 }}
             );

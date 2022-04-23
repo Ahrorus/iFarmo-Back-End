@@ -39,7 +39,7 @@ const productValidation = (data) => {
         type: Joi.string().trim().required().valid('Fruit', 'Vegetable', 'Grains', 'Nuts', 'Meat', 'Dairy', 'Baked goods', 'Plants', 'Other'),
         description: Joi.string().trim().max(250).allow(null, ''),
         quantity: Joi.number().positive().default(0),
-        unitType: Joi.string().trim().required().valid('lb', 'kg', 'g', 'gal', 'litre', 'piece'),
+        unitType: Joi.string().trim().required().valid('piece', 'lb', 'kg', 'g', 'gal', 'litre', 'ml', 'oz'),
         price: Joi.number().required().positive().default(0),
         city: Joi.string().trim().min(2).max(30)
     });
@@ -53,7 +53,7 @@ const jobValidation = (data) => {
         type: Joi.string().trim().required().valid('temporary', 'full-time', 'part-time', 'any'),
         description: Joi.string().trim().max(250).allow(null, ''),
         salary: Joi.number().positive().default(0),
-        unitType: Joi.string().trim().valid('one-time', 'hour', 'day', 'week', 'month', '').allow(null, ''),
+        unitType: Joi.string().trim().valid('', 'one-time', 'hour', 'day', 'week', 'month').allow(null, ''),
         city: Joi.string().trim().min(2).max(30)
     });
     return schema.validate(data);
@@ -66,7 +66,7 @@ const equipmentValidation = (data) => {
         type: Joi.string().trim().required().valid('Tools', 'Materials', 'Other'),
         description: Joi.string().trim().max(250).allow(null, ''),
         quantity: Joi.number().positive().default(0),
-        unitType: Joi.string().trim().valid('lb', 'kg', 'g', 'piece', 'hour', 'day', 'week', 'month').allow(null, ''),
+        unitType: Joi.string().trim().valid('', 'piece', 'lb', 'kg', 'g', 'hour', 'day', 'week', 'month').allow(null, ''),
         price: Joi.number().required().positive().default(0),
         city: Joi.string().trim().min(2).max(30)
     });
