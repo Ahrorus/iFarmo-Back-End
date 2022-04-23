@@ -2,7 +2,10 @@ const router = require('express').Router();
 const Product = require('../models/Product');
 const User = require('../models/User');
 const jwt = require('jsonwebtoken');
-const {productValidation} = require('../util/validation');
+const { productValidation } = require('../util/validation');
+const multer = require('multer');
+const { uploadFile, unlink } = require('../util/s3');
+const upload = multer({ dest: 'uploads/' });
 
 // Get product list
 router.get('/', async (req, res) => {
@@ -61,7 +64,7 @@ router.get('/:productId', async (req, res) => {
 });
 
 // Create product post
-router.post('/', async (req, res) => {
+router.post('/', upload.single('image'), async (req, res) => {
     try {
         // Get auth-token from header
         const token = req.header('auth-token');
@@ -83,6 +86,14 @@ router.post('/', async (req, res) => {
         if (error) {
             return res.status(403).send(error.details[0].message);
         }
+        // Upload image to S3
+        let imagePath = '';
+        if (req.file) {
+            const result = await uploadFile(req.file);
+            if (!result) return res.status(404).send('Could not upload the file.');
+            await unlink(req.file.path);
+            imagePath = result.Location;
+        }
         // Save the product
         try {
             const newProduct = new Product({
@@ -93,6 +104,7 @@ router.post('/', async (req, res) => {
                 unitType: req.body.unitType,
                 price: req.body.price,
                 city: req.body.city,
+                imagePath: imagePath,
                 postedBy: verifiedUser._id
             });
             const savedProduct = await newProduct.save();
@@ -111,7 +123,7 @@ router.post('/', async (req, res) => {
 });
 
 // Update product by id
-router.put('/:productId', async (req, res) => {
+router.put('/:productId', upload.single('image'), async (req, res) => {
     try {
         // Get auth-token from header
         const token = req.header('auth-token');
@@ -135,6 +147,14 @@ router.put('/:productId', async (req, res) => {
         if (error) {
             return res.status(403).send(error.details[0].message);
         }
+        // Upload image to S3
+        let imagePath = product.imagePath;
+        if (req.file) {
+            const result = await uploadFile(req.file);
+            if (!result) return res.status(404).send('Could not upload the file.');
+            await unlink(req.file.path);
+            imagePath = result.Location;
+        }
         // Update the product
         try {
             await Product.updateOne(
@@ -145,6 +165,8 @@ router.put('/:productId', async (req, res) => {
                     quantity: req.body.quantity,
                     unitType: req.body.unitType,
                     price: req.body.price,
+                    city: req.body.city,
+                    imagePath: imagePath,
                     postedBy: verifiedUser._id
                 }}
             );

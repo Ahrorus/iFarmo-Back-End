@@ -36,7 +36,7 @@ const updateUserValidation = (data) => {
 const productValidation = (data) => {
     const schema = Joi.object({
         name: Joi.string().trim().min(2).max(20).required(),
-        type: Joi.string().trim().required().valid('Fruit', 'Vegetable', 'Grains', 'Nuts', 'Meat', 'Dairy', 'Baked goods', 'Plant', 'Other'),
+        type: Joi.string().trim().required().valid('Fruit', 'Vegetable', 'Grains', 'Nuts', 'Meat', 'Dairy', 'Baked goods', 'Plants', 'Other'),
         description: Joi.string().trim().max(250).allow(null, ''),
         quantity: Joi.number().positive(),
         unitType: Joi.string().trim().required().valid('lb', 'kg', 'g', 'gal', 'litre', 'piece'),
