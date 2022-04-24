@@ -1,41 +1,5 @@
 [
 {
-    "name": "Dragon Fruit",
-    "type": "Fruit",
-    "quantity": 1,
-    "unitType": "lb",
-    "price": 4.20,
-    "description": "Ripe",
-    "city": "San Jose"
-},
-{
-    "name": "Apples",
-    "type": "Fruit",
-    "quantity": 100,
-    "unitType": "lb",
-    "price": 2.50,
-    "description": "Sweet apples from Sweet Apple Acres.",
-    "city": "Cupertino"
-},
-{
-    "name": "Green apples",
-    "type": "Fruit",
-    "quantity": 50,
-    "unitType": "lb",
-    "price": 2.00,
-    "description": "Sweet and sour apples from Sweet Apple Acres.",
-    "city": "Cupertino"
-},
-{
-    "name": "Melons",
-    "type": "Fruit",
-    "quantity": 200,
-    "unitType": "lb",
-    "price": 1.00,
-    "description": "Big juicy melons from Altos Family Farm.",
-    "city": "Los Altos"
-},
-{
     "name": "Carrots",
     "type": "Vegetable",
     "quantity": 60,
@@ -63,25 +27,7 @@
     "city": "Sunnyvale"
 },
 {
-    "name": "Pistachio",
-    "type": "Nuts",
-    "quantity": 20,
-    "unitType": "lb",
-    "price": 20.00,
-    "description": "Deetz Farm's finest pistachios.",
-    "city": "San Jose"
-},
-{
-    "name": "Pecan Butter",
-    "type": "Dairy",
-    "quantity": 20,
-    "unitType": "lb",
-    "price": 20.00,
-    "description": "Deetz Farm's finest pecan butter.",
-    "city": "San Jose"
-},
-{
-    "name": "Sweet potatoes",
+    "name": "Cucumbers",
     "type": "Vegetable",
     "quantity": 100,
     "unitType": "lb",
@@ -90,22 +36,22 @@
     "city": "San Jose"
 },
 {
-    "name": "Celery",
-    "type": "Vegetable",
-    "quantity": 100,
+    "name": "Milk Butter",
+    "type": "Dairy",
+    "quantity": 20,
     "unitType": "lb",
-    "price": 1.00,
-    "description": "'Celery! CELERY!' - Celeryjack.",
+    "price": 20.00,
+    "description": "Cow farm's finest milk butter. Great for sandwiches, baked goods, and other uses.",
     "city": "San Jose"
 },
 {
-    "name": "Deetz Nuts",
-    "type": "Nuts",
-    "quantity": 69,
+    "name": "Apples",
+    "type": "Fruit",
+    "quantity": 100,
     "unitType": "lb",
-    "price": 4.20,
-    "description": "Deetz Farm's finest pistachios.",
-    "city": "San Jose"
+    "price": 2.50,
+    "description": "Sweet apples from Sweet Apple Acres.",
+    "city": "Cupertino"
 },
 {
     "name": "Apple sauce",
@@ -117,12 +63,39 @@
     "city": "Cupertino"
 },
 {
-    "name": "Applejack apples",
-    "type": "Fruit",
+    "name": "Fresh Halal Meat",
+    "type": "Meat",
+    "quantity": 500,
+    "unitType": "lb",
+    "price": 6.00,
+    "description": "Halal lamb meat freshly cut in our family farm. Orders are acceptable by meat chops ($6.00/lb) or by the entire animal ($300 for a small sheep, $500 for adult).",
+    "city": "San Jose"
+},
+{
+    "name": "Dietz Nuts",
+    "type": "Nuts",
+    "quantity": 69,
+    "unitType": "pack",
+    "price": 4.20,
+    "description": "Diez Nuts are not nuts-nuts. Dietz Nuts are meat nuts!",
+    "city": "Sunnyvale"
+},
+{
+    "name": "Sweet potatoes",
+    "type": "Vegetable",
     "quantity": 100,
-    "unitType": "piece",
-    "price": 5.00,
-    "description": "Sweet Applejack-sort apples from Sweet Apple Acres.",
-    "city": "Cupertino"
+    "unitType": "lb",
+    "price": 1.00,
+    "description": "",
+    "city": "San Jose"
+},
+{
+    "name": "Melons",
+    "type": "Fruit",
+    "quantity": 200,
+    "unitType": "lb",
+    "price": 1.00,
+    "description": "Big juicy melons from Altos Family Farm.",
+    "city": "Los Altos"
 }
 ]

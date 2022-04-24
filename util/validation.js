@@ -37,9 +37,9 @@ const productValidation = (data) => {
     const schema = Joi.object({
         name: Joi.string().trim().min(2).max(20).required(),
         type: Joi.string().trim().required().valid('Fruit', 'Vegetable', 'Grains', 'Nuts', 'Meat', 'Dairy', 'Baked goods', 'Plants', 'Other'),
-        description: Joi.string().trim().max(250).allow(null, ''),
+        description: Joi.string().trim().max(300).allow(null, ''),
         quantity: Joi.number().positive().default(0),
-        unitType: Joi.string().trim().required().valid('piece', 'lb', 'kg', 'g', 'gal', 'litre', 'ml', 'oz'),
+        unitType: Joi.string().trim().required().valid('piece', 'pack', 'lb', 'kg', 'g', 'gal', 'litre', 'ml', 'oz'),
         price: Joi.number().required().positive().default(0),
         city: Joi.string().trim().min(2).max(30)
     });
@@ -51,7 +51,7 @@ const jobValidation = (data) => {
     const schema = Joi.object({
         title: Joi.string().trim().min(2).max(30).required(),
         type: Joi.string().trim().required().valid('temporary', 'full-time', 'part-time', 'any'),
-        description: Joi.string().trim().max(250).allow(null, ''),
+        description: Joi.string().trim().max(300).allow(null, ''),
         salary: Joi.number().positive().default(0),
         unitType: Joi.string().trim().valid('', 'one-time', 'hour', 'day', 'week', 'month').allow(null, ''),
         city: Joi.string().trim().min(2).max(30)
@@ -64,7 +64,7 @@ const equipmentValidation = (data) => {
     const schema = Joi.object({
         title: Joi.string().trim().min(2).max(30).required(),
         type: Joi.string().trim().required().valid('Tools', 'Materials', 'Other'),
-        description: Joi.string().trim().max(250).allow(null, ''),
+        description: Joi.string().trim().max(300).allow(null, ''),
         quantity: Joi.number().positive().default(0),
         unitType: Joi.string().trim().valid('', 'piece', 'lb', 'kg', 'g', 'hour', 'day', 'week', 'month').allow(null, ''),
         price: Joi.number().required().positive().default(0),
