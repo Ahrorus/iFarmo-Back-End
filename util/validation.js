@@ -79,3 +79,4 @@ module.exports.loginValidation = loginValidation;
 module.exports.updateUserValidation = updateUserValidation;
 module.exports.productValidation = productValidation;
 module.exports.jobValidation = jobValidation;
+module.exports.equipmentValidation = equipmentValidation;
