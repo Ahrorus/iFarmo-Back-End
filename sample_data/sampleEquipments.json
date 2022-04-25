@@ -1,4 +1,5 @@
 [
+{"login_as" : "juanito"},
 {
     "title": "Tractor",
     "type": "Tools",
@@ -8,7 +9,91 @@
     "price": 1000.00,
     "city": "San Jose"
 },
+
+{"login_as" : "Juanito"},
 {
-    
+    "title": "Hoe",
+    "type": "Tools",
+    "description": "Not too dirty.",
+    "quantity": 1,
+    "unitType": "week",
+    "price": 30.00,
+    "city": "San Jose"
+},
+{"login_as" : "Applejack"},
+{
+    "title": "Seeder",
+    "type": "Tools",
+    "description": "In good condition. Formerly Chuck's.",
+    "quantity": 5,
+    "unitType": "week",
+    "price": 10.00,
+    "city": "Cupertino"
+},
+
+{"login_as" : "Applejack"},
+{
+    "title": "Butcher Knife",
+    "type": "Tools",
+    "description": "Stainless steel.",
+    "quantity": 3,
+    "unitType": "week",
+    "price": 20.00,
+    "city": "San Jose"
+},
+
+{"login_as" : "Applejack"},
+{
+    "title": "Feeder",
+    "type": "Tools",
+    "description": "Carries a large sum of grain for animals.",
+    "quantity": 1,
+    "unitType": "week",
+    "price": 300.00,
+    "city": "San Jose"
+},
+
+{"login_as" : "Ahror"},
+{
+    "title": "Shovel",
+    "type": "Tools",
+    "description": "Fairly sturdy and reliable.",
+    "quantity": 5,
+    "unitType": "week",
+    "price": 20.00,
+    "city": "San Jose"
+},
+
+{"login_as" : "Ahror"},
+{
+    "title": "Combine",
+    "type": "Tools",
+    "description": "John Deere branded, harvests a wide variety of grain efficiently.",
+    "quantity": 1,
+    "unitType": "week",
+    "price": 3000.00,
+    "city": "San Jose"
+},
+
+{"login_as" : "Juanito"},
+{
+    "title": "Irrigation Sprinkler",
+    "type": "Tools",
+    "description": "Provides widespread irrigation for acres of land.",
+    "quantity": 1,
+    "unitType": "week",
+    "price": 3000.00,
+    "city": "San Jose"
+},
+
+{"login_as" : "Juanito"},
+{
+    "title": "Moisture Sensor",
+    "type": "Tools",
+    "description": "Senses moisture in soil.",
+    "quantity": 10,
+    "unitType": "week",
+    "price": 20.00,
+    "city": "San Jose"
 }
 ]
