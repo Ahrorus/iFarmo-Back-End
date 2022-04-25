@@ -3,6 +3,9 @@ const Equipment = require('../models/Equipment');
 const User = require('../models/User');
 const jwt = require('jsonwebtoken');
 const {equipmentValidation} = require('../util/validation');
+const multer = require('multer');
+const { uploadFile, unlink } = require('../util/s3');
+const upload = multer({ dest: 'uploads/' });
 
 // Get equipment list
 router.get('/', async (req, res) => {
@@ -63,7 +66,7 @@ router.get('/:equipmenId', async (req, res) => {
 });
 
 // Create equipment post
-router.post('/', async (req, res) => {
+router.post('/', upload.single('image'), async (req, res) => {
     try {
         // Get auth-token from header
         const token = req.header('auth-token');
@@ -85,6 +88,14 @@ router.post('/', async (req, res) => {
         if (error) {
             return res.status(403).send(error.details[0].message);
         }
+        // Upload image to S3
+        let imagePath = '';
+        if (req.file) {
+            const result = await uploadFile(req.file);
+            if (!result) return res.status(404).send('Could not upload the file.');
+            await unlink(req.file.path);
+            imagePath = result.Location;
+        }
         // Save the equipment
         try {
             const newEquipment = new Equipment({
@@ -95,6 +106,7 @@ router.post('/', async (req, res) => {
                 unitType: req.body.unitType ? req.body.unitType : '',
                 price: req.body.price ? req.body.price : 0,
                 city: req.body.city,
+                imagePath: imagePath,
                 postedBy: verifiedUser._id
             });
             const savedEquipment = await newEquipment.save();
@@ -113,7 +125,7 @@ router.post('/', async (req, res) => {
 });
 
 // Update equipment by id
-router.put('/:equipmentId', async (req, res) => {
+router.put('/:equipmentId', upload.single('image'), async (req, res) => {
     try {
         // Get auth-token from header
         const token = req.header('auth-token');
@@ -137,6 +149,14 @@ router.put('/:equipmentId', async (req, res) => {
         if (error) {
             return res.status(403).send(error.details[0].message);
         }
+        // Upload image to S3
+        let imagePath = equipment.imagePath;
+        if (req.file) {
+            const result = await uploadFile(req.file);
+            if (!result) return res.status(404).send('Could not upload the file.');
+            await unlink(req.file.path);
+            imagePath = result.Location;
+        }
         // Update the equipment
         try {
             await Equipment.updateOne(
@@ -147,6 +167,8 @@ router.put('/:equipmentId', async (req, res) => {
                     quantity: req.body.quantity ? req.body.quantity : 0,
                     unitType: req.body.unitType ? req.body.unitType : '',
                     price: req.body.price ? req.body.price : 0,
+                    city: req.body.city,
+                    imagePath: imagePath,
                     postedBy: verifiedUser._id
                 }}
             );
