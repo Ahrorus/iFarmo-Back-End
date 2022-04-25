@@ -78,9 +78,9 @@ router.post('/', upload.single('image'), async (req, res) => {
             res.status(400).send('Invalid token.');
         }
         const verifiedUser = jwt.verify(token, process.env.TOKEN_SECRET);
-        // Verify the user is farmer
+        // Verify the user is farmer, worker, or user
         const user = await User.findById(verifiedUser._id);
-        if (user.role != 'farmer'){
+        if (user.role != 'farmer' && user.role != 'worker' && user.role != 'user') {
             return res.status(403).send('Unauthorized operation.');
         }
         // Validate input
@@ -140,7 +140,7 @@ router.put('/:equipmentId', upload.single('image'), async (req, res) => {
         // Verify the equipment exists
         const equipment = await Equipment.findById(req.params.equipmentId);
         if (!equipment) return res.status(404).send('Equipment not found.');
-        // Verify it's from the same farmer
+        // Verify it's from the same user
         if (verifiedUser._id != equipment.postedBy) {
             return res.status(403).send('Unauthorized operation. You are not the owner of this equipment.');
         }

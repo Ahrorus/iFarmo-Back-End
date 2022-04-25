@@ -51,6 +51,8 @@ router.get('/', async (req, res) => {
     }
 });
 
+// Get job list that the user posted from the user's auth token
+
 // Get the specific job
 router.get('/:jobId', async (req, res) => {
     try {
