@@ -29,7 +29,7 @@ router.get('/', async (req, res) => {
                     $or: [
                         { name: regex },
                         { description: regex },
-                        { description: type },
+                        { type: regex },
                         { city: regex }
                     ]
                 }).sort({ datePosted: 'desc'}).populate('postedBy', 'username name email contactInfo');
@@ -40,7 +40,7 @@ router.get('/', async (req, res) => {
                     $or: [
                         { name: regex },
                         { description: regex },
-                        { description: type },
+                        { type:regex },
                         { city: regex }
                     ]
                 }).sort({ price: 'asc'}).populate('postedBy', 'username name email contactInfo');

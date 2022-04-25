@@ -1,4 +1,6 @@
 [
+
+{"login_as": "juanito"},
 {
     "name": "Carrots",
     "type": "Vegetable",
@@ -8,6 +10,8 @@
     "description": "Fresh carrots from the farm. Great for salads.",
     "city": "Sunnyvale"
 },
+
+{"login_as": "juanito"},
 {
     "name": "Fresh Milk",
     "type": "Dairy",
@@ -17,6 +21,8 @@
     "description": "Hot sale! Fresh milk from the Cow Farm in Sunnyvale.",
     "city": "Sunnyvale"
 },
+
+{"login_as": "juanito"},
 {
     "name": "Cheddar Cheese",
     "type": "Dairy",
@@ -26,6 +32,8 @@
     "description": "Cheddar cheese from the Cow Farm in Sunnyvale.",
     "city": "Sunnyvale"
 },
+
+{"login_as": "juanito"},
 {
     "name": "Cucumbers",
     "type": "Vegetable",
@@ -35,6 +43,8 @@
     "description": "",
     "city": "San Jose"
 },
+
+{"login_as": "juanito"},
 {
     "name": "Milk Butter",
     "type": "Dairy",
@@ -44,6 +54,8 @@
     "description": "Cow farm's finest milk butter. Great for sandwiches, baked goods, and other uses.",
     "city": "San Jose"
 },
+
+{"login_as": "applejack"},
 {
     "name": "Apples",
     "type": "Fruit",
@@ -53,6 +65,8 @@
     "description": "Sweet apples from Sweet Apple Acres.",
     "city": "Cupertino"
 },
+
+{"login_as": "applejack"},
 {
     "name": "Apple sauce",
     "type": "Fruit",
@@ -62,6 +76,8 @@
     "description": "Sweet apple sauce from Sweet Apple Acres.",
     "city": "Cupertino"
 },
+
+{"login_as": "ahrorus"},
 {
     "name": "Fresh Halal Meat",
     "type": "Meat",
@@ -71,6 +87,8 @@
     "description": "Halal lamb meat freshly cut in our family farm. Orders are acceptable by meat chops ($6.00/lb) or by the entire animal ($300 for a small sheep, $500 for adult).",
     "city": "San Jose"
 },
+
+{"login_as": "ahrorus"},
 {
     "name": "Dietz Nuts",
     "type": "Nuts",
@@ -80,6 +98,8 @@
     "description": "Diez Nuts are not nuts-nuts. Dietz Nuts are meat nuts!",
     "city": "Sunnyvale"
 },
+
+{"login_as": "juanito"},
 {
     "name": "Sweet potatoes",
     "type": "Vegetable",
@@ -89,6 +109,8 @@
     "description": "",
     "city": "San Jose"
 },
+
+{"login_as": "juanito"},
 {
     "name": "Melons",
     "type": "Fruit",
@@ -98,4 +120,5 @@
     "description": "Big juicy melons from Altos Family Farm.",
     "city": "Los Altos"
 }
+
 ]

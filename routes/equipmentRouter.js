@@ -26,6 +26,7 @@ router.get('/', async (req, res) => {
                     $or: [
                         { name: regex },
                         { description: regex },
+                        { type: regex },
                         { city: regex }
                     ]
                 }).sort({ datePosted: 'desc'}).populate('postedBy', 'username name email contactInfo');
@@ -36,6 +37,7 @@ router.get('/', async (req, res) => {
                     $or: [
                         { name: regex },
                         { description: regex },
+                        { type: regex },
                         { city: regex }
                     ]
                 }).sort({ price: 'asc'}).populate('postedBy', 'username name email contactInfo');
@@ -89,9 +91,9 @@ router.post('/', async (req, res) => {
                 title: req.body.title,
                 type: req.body.type,
                 description: req.body.description,
-                quantity: req.body.quantity,
-                unitType: req.body.unitType,
-                price: req.body.price,
+                quantity: req.body.quantity ? req.body.quantity : 0,
+                unitType: req.body.unitType ? req.body.unitType : '',
+                price: req.body.price ? req.body.price : 0,
                 city: req.body.city,
                 postedBy: verifiedUser._id
             });
@@ -142,9 +144,9 @@ router.put('/:equipmentId', async (req, res) => {
                     name: req.body.name,
                     type: req.body.type,
                     description: req.body.description,
-                    quantity: req.body.quantity,
-                    unitType: req.body.unitType,
-                    price: req.body.price,
+                    quantity: req.body.quantity ? req.body.quantity : 0,
+                    unitType: req.body.unitType ? req.body.unitType : '',
+                    price: req.body.price ? req.body.price : 0,
                     postedBy: verifiedUser._id
                 }}
             );
@@ -200,6 +202,8 @@ router.delete('/:equipmentId', async (req, res) => {
     }
 });
 
+// For Testing Purposes
+// Delete all equipments
 router.delete('/', async (req, res) => {
     try {
         const key = req.query.key;
