@@ -65,6 +65,38 @@ router.get('/:equipmenId', async (req, res) => {
     }
 });
 
+// Get equipment list that the user posted from the user's auth token
+router.get('/myequipments', async (req, res) => {
+    try {
+        // Get auth-token from header
+        const token = req.header('auth-token');
+        if (!token) return res.status(401).send('Access Denied. Token required.');
+        // Verify the token
+        try {
+            jwt.verify(token, process.env.TOKEN_SECRET);
+        } catch (err) {
+            res.status(400).send('Invalid token.');
+        }
+        const verifiedUser = jwt.verify(token, process.env.TOKEN_SECRET);
+        // Verify the user is farmer
+        const user = await User.findById(verifiedUser._id);
+        if (user.role != 'farmer'){
+            return res.status(403).send('Unauthorized operation.');
+        }
+        // Get the equipment list
+        try {
+            const equipments = await Equipment.find({ postedBy: user._id }).populate('postedBy', 'username name email contactInfo');
+            res.json(equipments);
+        }
+        catch(err) {
+            return res.status(404).send("Could not get the equipment list.");
+        }
+    }
+    catch(err) {
+        return res.status(404).send("Could not get the equipment list.");
+    }
+});
+
 // Create equipment post
 router.post('/', upload.single('image'), async (req, res) => {
     try {

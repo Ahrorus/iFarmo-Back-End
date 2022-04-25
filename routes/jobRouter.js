@@ -10,18 +10,18 @@ router.get('/', async (req, res) => {
         const searchKey = req.query.searchKey;
         const filter = req.query.filter;
         if (!searchKey || searchKey == '') {
-            if (!filter || filter == 'by_date') {
-                const jobs = await Job.find().sort({ datePosted: 'desc'}).populate('postedBy', 'username name email contactInfo role');
+            if (!filter) {
+                const jobs = await Job.find().populate('postedBy', 'username name email contactInfo role');
                 res.json(jobs);
             }
-            else if (filter == 'by_salary') {
-                const jobs = await Job.find().sort({ salary: 'asc'}).populate('postedBy', 'username name email contactInfo role');
+            else {
+                const jobs = (await Job.find().populate('postedBy', 'username name email contactInfo role')).filter(job => job.postedBy.role == filter);
                 res.json(jobs);
             }
         }
         else {
             const regex = new RegExp(searchKey, "i");
-            if (!filter || filter == 'by_date') {
+            if (!filter) {
                 const jobs = await Job.find({ 
                     $or: [
                         { title: regex },
@@ -29,18 +29,18 @@ router.get('/', async (req, res) => {
                         { type: regex },
                         { city: regex }
                     ]
-                }).sort({ datePosted: 'desc'}).populate('postedBy', 'username name email contactInfo role');
+                }).populate('postedBy', 'username name email contactInfo role');
                 res.json(jobs);
             }
-            else if (filter == 'by_salary') {
-                const jobs = await Job.find({ 
+            else {
+                const jobs = (await Job.find({ 
                     $or: [
                         { title: regex },
                         { description: regex },
                         { type: regex },
                         { city: regex }
                     ]
-                }).sort({ salary: 'asc'}).populate('postedBy', 'username name email contactInfo role');
+                }).populate('postedBy', 'username name email contactInfo role')).filter(job => job.postedBy.role == filter);
                 res.json(jobs);
             }
         }
@@ -52,6 +52,36 @@ router.get('/', async (req, res) => {
 });
 
 // Get job list that the user posted from the user's auth token
+router.get('/myjobs', async (req, res) => {
+    try {
+        // Get the user's auth token
+        const token = req.header('auth-token');
+        if (!token) return res.status(401).send('Access Denied. Token required.');
+        // Verify the token
+        try {
+            jwt.verify(token, process.env.TOKEN_SECRET);
+        } catch (err) {
+            res.status(400).send('Invalid token.');
+        }
+        const verifiedUser = jwt.verify(token, process.env.TOKEN_SECRET);
+        // Verify the user is farmer or worker
+        const user = await User.findById(verifiedUser._id);
+        if (user.role != 'farmer' && user.role != 'worker') {
+            return res.status(401).send('Access Denied. You are not a farmer or worker.');
+        }
+        // Get the job list that the user posted
+        try {
+            const jobs = await Job.find({ postedBy: user._id }).populate('postedBy', 'username name email contactInfo role');
+            res.json(jobs);
+        }
+        catch(err) {
+            return res.status(404).send("Could not get the job list.");
+        }
+    }
+    catch(err) {
+        return res.status(404).send("Could not get the job list.");
+    }
+});
 
 // Get the specific job
 router.get('/:jobId', async (req, res) => {

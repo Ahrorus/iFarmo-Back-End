@@ -1,18 +1,58 @@
 [
 {
+    "title": "Weekend gardener",
+    "type": "part-time",
+    "description": "I need to make extra money because my Software ENgineering salary is not enough. Available on weekends.",
+    "salary": 60,
+    "unitType": "hour",
+    "city": "Concord"
+},
+{
     "title": "Collecting apricots",
     "type": "temporary",
     "description": "I need to collect some apricots for my family.",
-    "unitType": "day",
     "salary": 100,
+    "unitType": "day",
     "city": "San Jose"
 },
 {
     "title": "Making dried apricots",
     "type": "part-time",
     "description": "I need to make some dried apricots for my family and also to sell in the market.",
-    "unitType": "hour",
     "salary": 10,
+    "unitType": "hour",
     "city": "Salinas"
+},
+{
+    "title": "Gardener",
+    "type": "temporary",
+    "description": "I really need to make extra money because my Software Engineering salary is really not enough. Anytime available.",
+    "salary": 40,
+    "unitType": "hour",
+    "city": "Concord"
+},
+{
+    "title": "Butcher needed",
+    "type": "temporary",
+    "description": "There is someone I need to be butchered. Will pay a lot of cash for it. Job discretion is an absolute must. Necessary tools will be provided. Contact me for more information. Serious business only.", 
+    "salary": 0,
+    "unitType": "",
+    "city": "Concord"
+},
+{
+    "title": "Truck driver",
+    "type": "part-time",
+    "description": "Need a part-time or full-time truck driver to deliver my products to different cities in California. Driver will be responsible for loading and unloading trucks as well as delivery. Salary non-negotiable.", 
+    "salary": 1000,
+    "unitType": "week",
+    "city": "Cupertino"
+},
+{
+    "title": "Any farm job :(",
+    "type": "temporary",
+    "description": "I got fired from my software engineering position. Please, I really need a job. Anywhere available.",
+    "salary": 0,
+    "unitType": "",
+    "city": "Concord"
 }
 ]
