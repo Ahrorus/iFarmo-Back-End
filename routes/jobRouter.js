@@ -52,7 +52,7 @@ router.get('/', async (req, res) => {
 });
 
 // Get job list that the user posted from the user's auth token
-router.get('/myjobs', async (req, res) => {
+router.get('/myjobs/', async (req, res) => {
     try {
         // Get the user's auth token
         const token = req.header('auth-token');

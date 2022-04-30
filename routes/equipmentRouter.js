@@ -55,9 +55,9 @@ router.get('/', async (req, res) => {
 });
 
 // Get the specific equipment
-router.get('/:equipmenId', async (req, res) => {
+router.get('/:equipmentId', async (req, res) => {
     try {
-        const equipment = await Equipment.findById(req.params.equipmenId).populate('postedBy', 'username name email contactInfo');
+        const equipment = await Equipment.findById(req.params.equipmentId).populate('postedBy', 'username name email contactInfo');
         res.json(equipment);
     }
     catch(err){
@@ -66,7 +66,7 @@ router.get('/:equipmenId', async (req, res) => {
 });
 
 // Get equipment list that the user posted from the user's auth token
-router.get('/myequipments', async (req, res) => {
+router.get('/myequipments/', async (req, res) => {
     try {
         // Get auth-token from header
         const token = req.header('auth-token');
@@ -86,6 +86,7 @@ router.get('/myequipments', async (req, res) => {
         // Get the equipment list
         try {
             const equipments = await Equipment.find({ postedBy: user._id }).populate('postedBy', 'username name email contactInfo');
+            console.log(equipments);
             res.json(equipments);
         }
         catch(err) {

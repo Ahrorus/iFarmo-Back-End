@@ -55,7 +55,7 @@ router.get('/', async (req, res) => {
 });
 
 // Get product list that the user posted from the user's auth token
-router.get('/myproducts', async (req, res) => {
+router.get('/myproducts/', async (req, res) => {
     try {
         // Get auth-token from header
         const token = req.header('auth-token');
