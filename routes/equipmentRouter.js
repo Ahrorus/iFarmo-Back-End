@@ -262,6 +262,8 @@ router.delete('/', async (req, res) => {
     try {
         const key = req.query.key;
         if (key != "123") return res.status(403).send("Unauthorized operation.");
+        await Equipment.deleteMany({});
+        await User.updateMany({}, {$set: {equipments: []}});
         res.send("Successfully deleted all equipments.");
     }
     catch(err){

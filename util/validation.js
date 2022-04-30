@@ -63,7 +63,7 @@ const jobValidation = (data) => {
 const equipmentValidation = (data) => {
     const schema = Joi.object({
         title: Joi.string().trim().min(2).max(30).required(),
-        type: Joi.string().trim().required().valid('Tools', 'Materials', 'Other'),
+        type: Joi.string().trim().required().valid('Tools', 'Materials', 'Machinery', 'Other'),
         description: Joi.string().trim().max(600).allow(null, ''),
         quantity: Joi.number().positive().default(0),
         unitType: Joi.string().trim().valid('', 'piece', 'lb', 'kg', 'g', 'hour', 'day', 'week', 'month').allow(null, ''),

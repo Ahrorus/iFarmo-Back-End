@@ -1,7 +1,7 @@
 [
 {
     "name": "Tractor",
-    "type": "Tools",
+    "type": "Machinery",
     "description": "A tractor is a vehicle that is used to pull or push a material or crop from a field, or to pull or push a material or crop from a mine.",
     "quantity": 1,
     "unitType": "week",
@@ -27,6 +27,9 @@
     "postedBy": "Chuck"
 },
 {
+    add a material
+}
+{
     "name": "Butcher knife",
     "type": "Tools",
     "description": "Stainles steel.",
@@ -45,13 +48,13 @@
     "postedBy": "Callaway"
 },
 {
-    "name": "Watering can",
-    "type": "Tools",
-    "description": "In good condition overall.",
-    "quantity": 1,
-    "unitType": "week",
-    "price": 8.00,
-    "postedBy": "Margaret"
+    machinery
+},
+{
+    material
+},
+{
+    material
 },
 {
     "name": "Trimmer",
@@ -78,9 +81,5 @@
     "unitType": "week",
     "price": 1000.00,
     "postedBy": "Harvey"
-},
-
-{
-    
 }
 ]
