@@ -13,37 +13,41 @@ router.get('/', async (req, res) => {
         const searchKey = req.query.searchKey;
         const filter = req.query.filter;
         if (!searchKey || searchKey == '') {
-            if (!filter || filter == 'by_date') {
-                const equipments = await Equipment.find().sort({ datePosted: 'desc'}).populate('postedBy', 'username name email contactInfo');
+            if (!filter) {
+                const equipments = await Equipment.find().sort({datePosted: 'desc'})
+                        .populate('postedBy', 'username name email contactInfo');
                 res.json(equipments);
             }
-            else if (filter == 'by_price') {
-                const equipments = await Equipment.find().sort({ price: 'asc'}).populate('postedBy', 'username name email contactInfo');
+            else  {
+                const equipments = (await Equipment.find().sort({datePosted: 'desc'})
+                        .populate('postedBy', 'username name email contactInfo'))
+                        .filter(equipment => equipment.type == filter);
                 res.json(equipments);
             }
         }
         else {
             const regex = new RegExp(searchKey, "i");
-            if (!filter || filter == 'by_date') {
+            if (!filter) {
                 const equipments = await Equipment.find({ 
                     $or: [
-                        { name: regex },
+                        { title: regex },
                         { description: regex },
                         { type: regex },
                         { city: regex }
                     ]
-                }).sort({ datePosted: 'desc'}).populate('postedBy', 'username name email contactInfo');
+                }).sort({datePosted: 'desc'}).populate('postedBy', 'username name email contactInfo');
                 res.json(equipments);
             }
-            else if (filter == 'by_price') {
-                const equipments = await Equipment.find({ 
+            else {
+                const equipments = (await Equipment.find({ 
                     $or: [
-                        { name: regex },
+                        { title: regex },
                         { description: regex },
                         { type: regex },
                         { city: regex }
                     ]
-                }).sort({ price: 'asc'}).populate('postedBy', 'username name email contactInfo');
+                }).sort({datePosted: 'desc'}).populate('postedBy', 'username name email contactInfo'))
+                .filter(equipment => equipment.type == filter);
                 res.json(equipments);
             }
         }
