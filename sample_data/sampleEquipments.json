@@ -1,99 +1,85 @@
 [
-{"login_as" : "juanito"},
 {
-    "title": "Tractor",
-    "type": "Tools",
+    "name": "Tractor",
+    "type": "Machinery",
     "description": "A tractor is a vehicle that is used to pull or push a material or crop from a field, or to pull or push a material or crop from a mine.",
     "quantity": 1,
     "unitType": "week",
     "price": 1000.00,
-    "city": "San Jose"
+    "postedBy": "Applejack"
 },
-
-{"login_as" : "Juanito"},
 {
-    "title": "Hoe",
+    "name": "Hoe",
     "type": "Tools",
-    "description": "Not too dirty.",
+    "description": "A good hoe, hardly been used.",
     "quantity": 1,
-    "unitType": "week",
-    "price": 30.00,
-    "city": "San Jose"
-},
-{"login_as" : "Applejack"},
-{
-    "title": "Seeder",
-    "type": "Tools",
-    "description": "In good condition. Formerly Chuck's.",
-    "quantity": 5,
     "unitType": "week",
     "price": 10.00,
-    "city": "Cupertino"
+    "postedBy": "Sneed"
 },
-
-{"login_as" : "Applejack"},
 {
-    "title": "Butcher Knife",
+    "name": "Shovel",
     "type": "Tools",
-    "description": "Stainless steel.",
-    "quantity": 3,
-    "unitType": "week",
-    "price": 20.00,
-    "city": "San Jose"
-},
-
-{"login_as" : "Applejack"},
-{
-    "title": "Feeder",
-    "type": "Tools",
-    "description": "Carries a large sum of grain for animals.",
+    "description": "Fairly sturdy, no rust.",
     "quantity": 1,
     "unitType": "week",
-    "price": 300.00,
-    "city": "San Jose"
+    "price": 15.00,
+    "postedBy": "Chuck"
 },
-
-{"login_as" : "Ahror"},
 {
-    "title": "Shovel",
-    "type": "Tools",
-    "description": "Fairly sturdy and reliable.",
-    "quantity": 5,
-    "unitType": "week",
-    "price": 20.00,
-    "city": "San Jose"
-},
-
-{"login_as" : "Ahror"},
+    add a material
+}
 {
-    "title": "Combine",
+    "name": "Butcher knife",
     "type": "Tools",
-    "description": "John Deere branded, harvests a wide variety of grain efficiently.",
+    "description": "Stainles steel.",
     "quantity": 1,
     "unitType": "week",
-    "price": 3000.00,
-    "city": "San Jose"
+    "price": 10.00,
+    "postedBy": "Roberts"
 },
-
-{"login_as" : "Juanito"},
 {
-    "title": "Irrigation Sprinkler",
+    "name": "Cattle prod",
     "type": "Tools",
-    "description": "Provides widespread irrigation for acres of land.",
+    "description": "Rechargable.",
     "quantity": 1,
     "unitType": "week",
-    "price": 3000.00,
-    "city": "San Jose"
+    "price": 15.00,
+    "postedBy": "Callaway"
 },
-
-{"login_as" : "Juanito"},
 {
-    "title": "Moisture Sensor",
+    machinery
+},
+{
+    material
+},
+{
+    material
+},
+{
+    "name": "Trimmer",
     "type": "Tools",
-    "description": "Senses moisture in soil.",
-    "quantity": 10,
+    "description": "Fully charged, not loud.",
+    "quantity": 1,
     "unitType": "week",
     "price": 20.00,
-    "city": "San Jose"
+    "postedBy": "Samson"
+},{
+    "name": "Cattle gun",
+    "type": "Tools",
+    "description": "Fully loaded, hardly used.",
+    "quantity": 1,
+    "unitType": "week",
+    "price": 25.00,
+    "postedBy": "Chigurh"
+},
+{
+    "name": "Grain trailer",
+    "type": "Tools",
+    "description": "Can go on for 2100 miles with one gallon of gas.",
+    "quantity": 1,
+    "unitType": "week",
+    "price": 1000.00,
+    "postedBy": "Harvey"
 }
 ]

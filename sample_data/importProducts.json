@@ -1,0 +1,14 @@
+[
+    {
+        "name": "Carrots",
+        "type": "Vegetable",
+        "quantity": 60,
+        "unitType": "lb",
+        "price": 1.20,
+        "description": "Fresh carrots from the farm. Great for salads.",
+        "city": "Sunnyvale",
+        "imagePath": "https://ifarmo.s3.us-west-1.amazonaws.com/images/8d06fd74b2e4afad12248a8df3a994bd",
+        "postedBy": "6264943db8a7a2816a4abbdf"
+    }
+]
+    

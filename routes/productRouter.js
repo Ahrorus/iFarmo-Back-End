@@ -6,6 +6,8 @@ const { productValidation } = require('../util/validation');
 const multer = require('multer');
 const { uploadFile, unlink } = require('../util/s3');
 const upload = multer({ dest: 'uploads/' });
+const fs = require('fs');
+const importProducts = require('../sample_data/importProducts.json');
 
 // Get product list
 router.get('/', async (req, res) => {
@@ -269,6 +271,39 @@ router.delete('/', async (req, res) => {
     }
     catch(err){
         return res.status(404).send("Could not delete all products.");
+    }
+});
+
+// Create products from a json file
+router.post('/import', async (req, res) => {
+    try {
+        const key = req.query.key;
+        if (key != "123") return res.status(403).send("Unauthorized operation.");
+        // Parse json data from importProducts.json file
+        const products = importProducts;
+        for (let i = 0; i < products.length; i++) {
+            const product = products[i];
+            const newProduct = new Product({
+                name: product.name,
+                type: product.type,
+                description: product.description,
+                quantity: product.quantity,
+                unitType: product.unitType,
+                price: product.price,
+                city: product.city,
+                imagePath: product.imagePath,
+                postedBy: product.postedBy
+            });
+            const savedProduct = await newProduct.save();
+            const user = await User.findById(product.postedBy);
+            user.products = user.products.concat(savedProduct);
+            await user.save();
+        }
+        res.send("Successfully imported products. All test cases passed.");
+    }
+    catch(err){
+        console.log(err);
+        return res.status(404).send("Could not import products.");
     }
 });
 
