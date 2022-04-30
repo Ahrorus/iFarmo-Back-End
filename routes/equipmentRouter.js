@@ -82,9 +82,9 @@ router.get('/myequipments/', async (req, res) => {
             res.status(400).send('Invalid token.');
         }
         const verifiedUser = jwt.verify(token, process.env.TOKEN_SECRET);
-        // Verify the user is farmer
+        // Verify the user is farmer, worker, or user
         const user = await User.findById(verifiedUser._id);
-        if (user.role != 'farmer'){
+        if (user.role != 'farmer' && user.role != 'worker' && user.role != 'user') {
             return res.status(403).send('Unauthorized operation.');
         }
         // Get the equipment list
