@@ -287,15 +287,15 @@ router.post('/import', async (req, res) => {
         for (let i = 0; i < equipments.length; i++) {
             const equipment = equipments[i];
             const newEquipment = new Equipment({
-                title: req.body.title,
-                type: req.body.type,
-                description: req.body.description,
-                quantity: req.body.quantity ? req.body.quantity : 0,
-                unitType: req.body.unitType ? req.body.unitType : '',
-                price: req.body.price ? req.body.price : 0,
-                city: req.body.city,
-                imagePath: imagePath,
-                postedBy: verifiedUser._id
+                title: equipment.title,
+                type: equipment.type,
+                description: equipment.description,
+                quantity: equipment.quantity ? equipment.quantity : 0,
+                unitType: equipment.unitType ? equipment.unitType : '',
+                price: equipment.price ? equipment.price : 0,
+                city: equipment.city,
+                imagePath: equipment.imagePath,
+                postedBy: equipment.postedBy
             });
             const savedEquipment = await newEquipment.save();
             const user = await User.findById(equipment.postedBy);
