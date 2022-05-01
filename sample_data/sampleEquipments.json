@@ -4,7 +4,7 @@
     "type": "Machinery",
     "description": "A tractor is a vehicle that is used to pull or push a material or crop from a field, or to pull or push a material or crop from a mine.",
     "quantity": 1,
-    "unitType": "week",
+    "unitType": "piece",
     "price": 1000.00,
     "city": "Fremont"
 },
@@ -13,7 +13,7 @@
     "type": "Tools",
     "description": "A good hoe, hardly been used.",
     "quantity": 1,
-    "unitType": "week",
+    "unitType": "piece",
     "price": 10.00,
     "city": "San Jose"
 },
@@ -22,7 +22,7 @@
     "type": "Tools",
     "description": "Fairly sturdy, no rust.",
     "quantity": 1,
-    "unitType": "week",
+    "unitType": "piece",
     "price": 15.00,
     "city": "Milpitas"
 },
@@ -31,7 +31,7 @@
     "type": "Tools",
     "description": "Stainless steel.",
     "quantity": 1,
-    "unitType": "week",
+    "unitType": "piece",
     "price": 10.00,
     "city": "Hayward"
 },
@@ -40,7 +40,7 @@
     "type": "Machinery",
     "description": "Fully fueled.",
     "quantity": 5,
-    "unitType": "week",
+    "unitType": "piece",
     "price": 10000.00,
     "city": "Tracy"
 },
