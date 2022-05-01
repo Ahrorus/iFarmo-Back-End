@@ -6,7 +6,6 @@ const { productValidation } = require('../util/validation');
 const multer = require('multer');
 const { uploadFile, unlink } = require('../util/s3');
 const upload = multer({ dest: 'uploads/' });
-const fs = require('fs');
 const importProducts = require('../sample_data/importProducts.json');
 
 // Get product list

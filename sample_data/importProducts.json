@@ -9,6 +9,116 @@
         "city": "Sunnyvale",
         "imagePath": "https://ifarmo.s3.us-west-1.amazonaws.com/images/8d06fd74b2e4afad12248a8df3a994bd",
         "postedBy": "6264943db8a7a2816a4abbdf"
+    },
+    {
+        "name": "Fresh Milk",
+        "type": "Dairy",
+        "quantity": 40,
+        "unitType": "gal",
+        "price": 3.00,
+        "description": "Hot sale! Fresh milk from the Cow Farm in Sunnyvale.",
+        "city": "Sunnyvale",
+        "imagePath": "https://ifarmo.s3.us-west-1.amazonaws.com/images/3f0a1829b0b6ea09f083ad898dc5e1bf",
+        "postedBy": "6264943db8a7a2816a4abbdf"
+    },
+    {
+        "name": "Cheddar Cheese",
+        "type": "Dairy",
+        "quantity": 20,
+        "unitType": "lb",
+        "price": 19.50,
+        "description": "Cheddar cheese from the Cow Farm in Sunnyvale.",
+        "city": "Sunnyvale",
+        "imagePath": "https://ifarmo.s3.us-west-1.amazonaws.com/images/835fc81c42349e39eb4b51c048fe228e",
+        "postedBy": "6264943db8a7a2816a4abbdf"
+    },
+    {
+        "name": "Cucumbers",
+        "type": "Vegetable",
+        "quantity": 100,
+        "unitType": "lb",
+        "price": 1.00,
+        "description": "",
+        "city": "San Jose",
+        "imagePath": "https://ifarmo.s3.us-west-1.amazonaws.com/images/aabb4b7f3212eaacb2b33180c1c317c8",
+        "postedBy": "6264943db8a7a2816a4abbdf"
+    },
+    {
+        "name": "Milk Butter",
+        "type": "Dairy",
+        "quantity": 20,
+        "unitType": "lb",
+        "price": 20.00,
+        "description": "Cow farm's finest milk butter. Great for sandwiches, baked goods, and other uses.",
+        "city": "San Jose",
+        "imagePath": "https://ifarmo.s3.us-west-1.amazonaws.com/images/20523aa8b3b7d7115f1e31df7f005391",
+        "postedBy": "6264943db8a7a2816a4abbdf"
+    },
+    {
+        "name": "Apples",
+        "type": "Fruit",
+        "quantity": 100,
+        "unitType": "lb",
+        "price": 2.50,
+        "description": "Sweet apples from Sweet Apple Acres.",
+        "city": "Cupertino",
+        "imagePath": "https://ifarmo.s3.us-west-1.amazonaws.com/images/5251db772259b78c6e98f04e14495857",
+        "postedBy": "6264932bb8a7a2816a4abbd7"
+    },
+    {
+        "name": "Apple sauce",
+        "type": "Fruit",
+        "quantity": 100,
+        "unitType": "piece",
+        "price": 5.00,
+        "description": "Sweet apple sauce from Sweet Apple Acres.",
+        "city": "Cupertino",
+        "imagePath": "https://ifarmo.s3.us-west-1.amazonaws.com/images/d46fbed6248a7381ea600d4266053a7a",
+        "postedBy": "6264932bb8a7a2816a4abbd7"
+    },
+    {
+        "name": "Fresh Halal Meat",
+        "type": "Meat",
+        "quantity": 500,
+        "unitType": "lb",
+        "price": 6.00,
+        "description": "Halal lamb meat freshly cut in our family farm. Orders are acceptable by meat chops ($6.00/lb) or by the entire animal ($300 for a small sheep, $500 for adult).",
+        "city": "San Jose",
+        "imagePath": "https://ifarmo.s3.us-west-1.amazonaws.com/images/141faf1f2efa75fb8399588669b3e6da",
+        "postedBy": "622ab3ab0c9580b67fc41ed0"
+    },
+    {
+        "name": "Dietz Nuts",
+        "type": "Nuts",
+        "quantity": 69,
+        "unitType": "pack",
+        "price": 4.20,
+        "description": "Diez Nuts are not nuts-nuts. Dietz Nuts are meat nuts!",
+        "city": "Sunnyvale",
+        "imagePath": "https://ifarmo.s3.us-west-1.amazonaws.com/images/d77d41955fade265cfa6b348c09e898c",
+        "postedBy": "622ab3ab0c9580b67fc41ed0"
+    },
+    {
+        "name": "Sweet potatoes",
+        "type": "Vegetable",
+        "quantity": 100,
+        "unitType": "lb",
+        "price": 1.00,
+        "description": "",
+        "city": "San Jose",
+        "imagePath": "https://ifarmo.s3.us-west-1.amazonaws.com/images/3a02c63b911fe239efb57c1c2ec8bbc0",
+        "postedBy": "6264943db8a7a2816a4abbdf"
+    },
+    {
+        "name": "Melons",
+        "type": "Fruit",
+        "quantity": 200,
+        "unitType": "lb",
+        "price": 1.00,
+        "description": "Big juicy melons from Altos Family Farm.",
+        "city": "Los Altos",
+        "imagePath": "https://ifarmo.s3.us-west-1.amazonaws.com/images/3be2085dd83dd7ca756d3a101c652574",
+        "postedBy": "6264943db8a7a2816a4abbdf"
     }
 ]
     

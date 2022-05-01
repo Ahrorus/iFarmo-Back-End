@@ -6,6 +6,7 @@ const {equipmentValidation} = require('../util/validation');
 const multer = require('multer');
 const { uploadFile, unlink } = require('../util/s3');
 const upload = multer({ dest: 'uploads/' });
+const importEquipments = require('../sample_data/importEquipments.json');
 
 // Get equipment list
 router.get('/', async (req, res) => {
@@ -198,7 +199,7 @@ router.put('/:equipmentId', upload.single('image'), async (req, res) => {
         try {
             await Equipment.updateOne(
                 {_id: req.params.equipmentId}, {$set: {
-                    name: req.body.name,
+                    title: req.body.title,
                     type: req.body.type,
                     description: req.body.description,
                     quantity: req.body.quantity ? req.body.quantity : 0,
@@ -275,4 +276,39 @@ router.delete('/', async (req, res) => {
         return res.status(404).send("Could not delete all equipments.");
     }
 });
+
+// Create equipments from a json file
+router.post('/import', async (req, res) => {
+    try {
+        const key = req.query.key;
+        if (key != "123") return res.status(403).send("Unauthorized operation.");
+        // Parse json data from importEquipments.json file
+        const equipments = importEquipments;
+        for (let i = 0; i < equipments.length; i++) {
+            const equipment = equipments[i];
+            const newEquipment = new Equipment({
+                title: req.body.title,
+                type: req.body.type,
+                description: req.body.description,
+                quantity: req.body.quantity ? req.body.quantity : 0,
+                unitType: req.body.unitType ? req.body.unitType : '',
+                price: req.body.price ? req.body.price : 0,
+                city: req.body.city,
+                imagePath: imagePath,
+                postedBy: verifiedUser._id
+            });
+            const savedEquipment = await newEquipment.save();
+            const user = await User.findById(equipment.postedBy);
+            user.equipments = user.equipments.concat(savedEquipment);
+            await user.save();
+        }
+        res.send("Successfully imported equipments. All test cases passed.");
+    }
+    catch(err){
+        console.log(err);
+        return res.status(404).send("Could not import equipments.");
+    }
+});
+
+
 module.exports = router;

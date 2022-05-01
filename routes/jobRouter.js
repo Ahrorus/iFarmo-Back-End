@@ -3,6 +3,7 @@ const Job = require('../models/Job');
 const User = require('../models/User');
 const jwt = require('jsonwebtoken');
 const {jobValidation} = require('../util/validation');
+const importJobs = require('../sample_data/importJobs.json');
 
 // Get job list
 router.get('/', async (req, res) => {
@@ -11,11 +12,11 @@ router.get('/', async (req, res) => {
         const filter = req.query.filter;
         if (!searchKey || searchKey == '') {
             if (!filter) {
-                const jobs = await Job.find().populate('postedBy', 'username name email contactInfo role');
+                const jobs = await Job.find().sort({ datePosted: 'desc'}).populate('postedBy', 'username name email contactInfo role');
                 res.json(jobs);
             }
             else {
-                const jobs = (await Job.find().populate('postedBy', 'username name email contactInfo role')).filter(job => job.postedBy.role == filter);
+                const jobs = (await Job.find().sort({ datePosted: 'desc'}).populate('postedBy', 'username name email contactInfo role')).filter(job => job.postedBy.role == filter);
                 res.json(jobs);
             }
         }
@@ -29,7 +30,7 @@ router.get('/', async (req, res) => {
                         { type: regex },
                         { city: regex }
                     ]
-                }).populate('postedBy', 'username name email contactInfo role');
+                }).sort({ datePosted: 'desc'}).populate('postedBy', 'username name email contactInfo role');
                 res.json(jobs);
             }
             else {
@@ -40,7 +41,7 @@ router.get('/', async (req, res) => {
                         { type: regex },
                         { city: regex }
                     ]
-                }).populate('postedBy', 'username name email contactInfo role')).filter(job => job.postedBy.role == filter);
+                }).sort({ datePosted: 'desc'}).populate('postedBy', 'username name email contactInfo role')).filter(job => job.postedBy.role == filter);
                 res.json(jobs);
             }
         }
@@ -241,6 +242,38 @@ router.delete('/', async (req, res) => {
     }
     catch(err) {
         return res.status(404).send("Could not delete all jobs.");
+    }
+});
+
+// Create jobs from a json file
+router.post('/import', async (req, res) => {
+    try {
+        const key = req.query.key;
+        if (key != "123") return res.status(403).send("Unauthorized operation.");
+        // Parse json data from importJobs.json file
+        const jobs = importJobs;
+        // Save the jobs
+        for (let i = 0; i < jobs.length; i++) {
+            const job = jobs[i];
+            const newJob = new Job({
+                title: job.title,
+                description: job.description,
+                type: job.type,
+                salary: job.salary ? job.salary : 0,
+                unitType: job.unitType ? job.unitType : '',
+                city: job.city,
+                postedBy: job.postedBy
+            });
+            const savedJob = await newJob.save();
+            const user = await User.findById(job.postedBy);
+            user.jobs = user.jobs.concat(savedJob);
+            await user.save();
+        }
+        res.send("Successfully imported jobs. All test cases passed.");
+    }
+    catch(err){
+        console.log(err);
+        return res.status(404).send("Could not import jobs.");
     }
 });
 
