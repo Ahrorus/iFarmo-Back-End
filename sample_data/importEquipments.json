@@ -1,58 +1,112 @@
 [
-    {
-        "title": "Tractor",
-        "description": "A tractor is a vehicle that is used to pull or push a material or crop from a field, or to pull or push a material or crop from a mine.",
-        "type": "Tools",
-        "quantity": 1,
-        "unitType": "week",
-        "price": 1000,
-        "city": "Fremont",
-        "imagePath": "https://ifarmo.s3.us-west-1.amazonaws.com/images/faf1b28930559e7c497ce0f64e187c07",
-        "postedBy": "6264943db8a7a2816a4abbdf"
-    },
-    {
-
-        "imagePath": "https://ifarmo.s3.us-west-1.amazonaws.com/images/8d2b3b31e11f5a47f5ea38592ce1f883",
-        "postedBy": "6264943db8a7a2816a4abbdf"
-    },
-    {
-
-        "imagePath": "https://ifarmo.s3.us-west-1.amazonaws.com/images/4a0c3c1d5c740609c60e161b3ae19394",
-        "postedBy": "6264943db8a7a2816a4abbdf"
-    },
-    {
-
-        "imagePath": "https://ifarmo.s3.us-west-1.amazonaws.com/images/e0b6a230c3fd301db68a00f4132b3318",
-        "postedBy": "6264932bb8a7a2816a4abbd7"
-    },
-    {
-
-        "imagePath": "https://ifarmo.s3.us-west-1.amazonaws.com/images/6e609a6242bef7ba2a6f860dc18677ed",
-        "postedBy": "6264932bb8a7a2816a4abbd7"
-    },
-    {
-
-        "imagePath": "https://ifarmo.s3.us-west-1.amazonaws.com/images/e128e9c4399faf5d7705ba3476f552ec",
-        "postedBy": "622ab3ab0c9580b67fc41ed0"
-    },
-    {
-
-        "imagePath": "https://ifarmo.s3.us-west-1.amazonaws.com/images/a4f198f38476901aa6d0f760e4616336",
-        "postedBy": "622ab3ab0c9580b67fc41ed0"
-    },
-    {
-
-        "imagePath": "https://ifarmo.s3.us-west-1.amazonaws.com/images/db6b4564b3205c5d39f0a95aaacc3b79",
-        "postedBy": "62472d3b843b42ace058f71e"
-    },
-    {
-
-        "imagePath": "https://ifarmo.s3.us-west-1.amazonaws.com/images/0ecf6a2eeea778252d6ec88db1e1b36b",
-        "postedBy": "62472d3b843b42ace058f71e"
-    },
-    {
-        
-        "imagePath": "https://ifarmo.s3.us-west-1.amazonaws.com/images/4a2422f4a91f40d56ff48b80cc4b805b",
-        "postedBy": "62472d3b843b42ace058f71e"
-    }
+{
+    "title": "Tractor",
+    "description": "A tractor is a vehicle that is used to pull or push a material or crop from a field, or to pull or push a material or crop from a mine.",
+    "type": "Tools",
+    "quantity": 1,
+    "unitType": "week",
+    "price": 1000,
+    "city": "Fremont",
+    "imagePath": "https://ifarmo.s3.us-west-1.amazonaws.com/images/faf1b28930559e7c497ce0f64e187c07",
+    "postedBy": "6264943db8a7a2816a4abbdf"
+},
+{
+    "title": "Hoe",
+    "type": "Tools",
+    "description": "A good hoe, hardly been used.",
+    "quantity": 1,
+    "unitType": "week",
+    "price": 10.00,
+    "city": "San Jose",
+    "imagePath": "https://ifarmo.s3.us-west-1.amazonaws.com/images/8d2b3b31e11f5a47f5ea38592ce1f883",
+    "postedBy": "6264943db8a7a2816a4abbdf"
+},
+{
+    "title": "Shovel",
+    "type": "Tools",
+    "description": "Fairly sturdy, no rust.",
+    "quantity": 1,
+    "unitType": "week",
+    "price": 15.00,
+    "city": "Milpitas",
+    "imagePath": "https://ifarmo.s3.us-west-1.amazonaws.com/images/4a0c3c1d5c740609c60e161b3ae19394",
+    "postedBy": "6264943db8a7a2816a4abbdf"
+},
+{
+    "title": "Butcher knife",
+    "type": "Tools",
+    "description": "Stainless steel.",
+    "quantity": 1,
+    "unitType": "week",
+    "price": 10.00,
+    "city": "Hayward",
+    "imagePath": "https://ifarmo.s3.us-west-1.amazonaws.com/images/e0b6a230c3fd301db68a00f4132b3318",
+    "postedBy": "6264932bb8a7a2816a4abbd7"
+},
+{
+    "title": "Seeder",
+    "type": "Machinery",
+    "description": "Fully fueled.",
+    "quantity": 5,
+    "unitType": "week",
+    "price": 10000.00,
+    "city": "Tracy",
+    "imagePath": "https://ifarmo.s3.us-west-1.amazonaws.com/images/6e609a6242bef7ba2a6f860dc18677ed",
+    "postedBy": "6264932bb8a7a2816a4abbd7"
+},
+{
+    "title": "Lumber",
+    "type": "Materials",
+    "description": "Freshly cut and long.",
+    "quantity": 20,
+    "unitType": "piece",
+    "price": 250.00,
+    "city": "Milpitas",
+    "imagePath": "https://ifarmo.s3.us-west-1.amazonaws.com/images/e128e9c4399faf5d7705ba3476f552ec",
+    "postedBy": "622ab3ab0c9580b67fc41ed0"
+},
+{
+    "title": "Copper",
+    "type": "Materials",
+    "description": "Comes in pipes.",
+    "quantity": 20,
+    "unitType": "piece",
+    "price": 20.00,
+    "city" :"San Jose",
+    "imagePath": "https://ifarmo.s3.us-west-1.amazonaws.com/images/a4f198f38476901aa6d0f760e4616336",
+    "postedBy": "622ab3ab0c9580b67fc41ed0"
+},
+{
+    "title": "Moisture sensor",
+    "type": "Machinery",
+    "description": "Hardly used and very precise.",
+    "quantity": 1,
+    "unitType": "piece",
+    "price": 25.00,
+    "city":"San Francisco",
+    "imagePath": "https://ifarmo.s3.us-west-1.amazonaws.com/images/db6b4564b3205c5d39f0a95aaacc3b79",
+    "postedBy": "62472d3b843b42ace058f71e"
+},
+{
+    "title": "Combine",
+    "type": "Machinery",
+    "description": "Can go on for 2100 miles with one gallon of gas.",
+    "quantity": 1,
+    "unitType": "piece",
+    "price": 1000.00,
+    "city":"Foster City",
+    "imagePath": "https://ifarmo.s3.us-west-1.amazonaws.com/images/0ecf6a2eeea778252d6ec88db1e1b36b",
+    "postedBy": "62472d3b843b42ace058f71e"
+},
+{
+    "title": "Feeder",
+    "type": "Tools",
+    "description": "Home made and durable, perfect for animals. Formerly Chuck's",
+    "quantity": 4,
+    "unitType": "piece",
+    "price": 50.00,
+    "city":"Foster City",
+    "imagePath": "https://ifarmo.s3.us-west-1.amazonaws.com/images/4a2422f4a91f40d56ff48b80cc4b805b",
+    "postedBy": "62472d3b843b42ace058f71e"
+}
 ]
