@@ -59,17 +59,6 @@ router.get('/', async (req, res) => {
     }
 });
 
-// Get the specific equipment
-router.get('/:equipmentId', async (req, res) => {
-    try {
-        const equipment = await Equipment.findById(req.params.equipmentId).populate('postedBy', 'username name email contactInfo');
-        res.json(equipment);
-    }
-    catch(err){
-        return res.status(404).send("Could not get the equipment.");
-    }
-});
-
 // Get equipment list that the user posted from the user's auth token
 router.get('/myequipments/', async (req, res) => {
     try {
@@ -91,7 +80,6 @@ router.get('/myequipments/', async (req, res) => {
         // Get the equipment list
         try {
             const equipments = await Equipment.find({ postedBy: user._id }).populate('postedBy', 'username name email contactInfo');
-            console.log(equipments);
             res.json(equipments);
         }
         catch(err) {
@@ -100,6 +88,17 @@ router.get('/myequipments/', async (req, res) => {
     }
     catch(err) {
         return res.status(404).send("Could not get the equipment list.");
+    }
+});
+
+// Get the specific equipment
+router.get('/:equipmentId', async (req, res) => {
+    try {
+        const equipment = await Equipment.findById(req.params.equipmentId).populate('postedBy', 'username name email contactInfo');
+        res.json(equipment);
+    }
+    catch(err){
+        return res.status(404).send("Could not get the equipment.");
     }
 });
 
