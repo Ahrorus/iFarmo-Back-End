@@ -58,6 +58,7 @@ router.get('/', async (req, res) => {
 // Get product list that the user posted from the user's auth token
 router.get('/myproducts/', async (req, res) => {
     try {
+        const searchKey = req.query.searchKey;
         // Get auth-token from header
         const token = req.header('auth-token');
         if (!token) return res.status(401).send('Access Denied. Token required.');
@@ -75,8 +76,23 @@ router.get('/myproducts/', async (req, res) => {
         }
         // Get the product list that the user posted
         try {
-            const products = await Product.find({ postedBy: user._id }).populate('postedBy', 'username name email contactInfo');
-            res.json(products);
+            if (!searchKey || searchKey == '') {
+                const products = await Product.find({ postedBy: user._id })
+                        .sort({ datePosted: 'desc'}).populate('postedBy', 'username name email contactInfo');
+                res.json(products);
+            } else {
+                const regex = new RegExp(searchKey, "i");
+                const products = await Product.find({
+                    $or: [
+                        { name: regex },
+                        { description: regex },
+                        { type: regex },
+                        { city: regex }
+                    ],
+                    postedBy: user._id
+                }).sort({ datePosted: 'desc'}).populate('postedBy', 'username name email contactInfo');
+                res.json(products);
+            }
         }
         catch(err) {
             return res.status(404).send("Could not get the product list.");

@@ -1,16 +1,5 @@
 [
 {
-    "title": "Tractor",
-    "description": "A tractor is a vehicle that is used to pull or push a material or crop from a field, or to pull or push a material or crop from a mine.",
-    "type": "Tools",
-    "quantity": 1,
-    "unitType": "week",
-    "price": 1000,
-    "city": "Fremont",
-    "imagePath": "https://ifarmo.s3.us-west-1.amazonaws.com/images/faf1b28930559e7c497ce0f64e187c07",
-    "postedBy": "6264943db8a7a2816a4abbdf"
-},
-{
     "title": "Hoe",
     "type": "Tools",
     "description": "A good hoe, hardly been used.",
@@ -63,22 +52,33 @@
     "price": 250.00,
     "city": "Milpitas",
     "imagePath": "https://ifarmo.s3.us-west-1.amazonaws.com/images/e128e9c4399faf5d7705ba3476f552ec",
-    "postedBy": "622ab3ab0c9580b67fc41ed0"
+    "postedBy": "62472d3b843b42ace058f71e"
 },
 {
     "title": "Copper",
     "type": "Materials",
-    "description": "Comes in pipes.",
+    "description": "Comes in pipes. Cheapest in the world, but not the best. Surely cheaper than adamantium.",
     "quantity": 20,
     "unitType": "piece",
     "price": 20.00,
     "city" :"San Jose",
     "imagePath": "https://ifarmo.s3.us-west-1.amazonaws.com/images/a4f198f38476901aa6d0f760e4616336",
+    "postedBy": "62472d3b843b42ace058f71e"
+},
+{
+    "title": "Tractor",
+    "description": "A tractor is a vehicle that is used to pull or push a material or crop from a field, or to pull or push a material or crop from a mine.",
+    "type": "Machinery",
+    "quantity": 1,
+    "unitType": "day",
+    "price": 300,
+    "city": "Fremont",
+    "imagePath": "https://ifarmo.s3.us-west-1.amazonaws.com/images/67bb7e7fb2e2b8bbdbe927ef480a7872",
     "postedBy": "622ab3ab0c9580b67fc41ed0"
 },
 {
     "title": "Moisture sensor",
-    "type": "Machinery",
+    "type": "Tools",
     "description": "Hardly used and very precise.",
     "quantity": 1,
     "unitType": "piece",
@@ -96,7 +96,7 @@
     "price": 1000.00,
     "city":"Foster City",
     "imagePath": "https://ifarmo.s3.us-west-1.amazonaws.com/images/0ecf6a2eeea778252d6ec88db1e1b36b",
-    "postedBy": "62472d3b843b42ace058f71e"
+    "postedBy": "622ab3ab0c9580b67fc41ed0"
 },
 {
     "title": "Feeder",

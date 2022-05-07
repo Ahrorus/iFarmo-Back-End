@@ -55,6 +55,7 @@ router.get('/', async (req, res) => {
 // Get job list that the user posted from the user's auth token
 router.get('/myjobs/', async (req, res) => {
     try {
+        const searchKey = req.query.searchKey;
         // Get the user's auth token
         const token = req.header('auth-token');
         if (!token) return res.status(401).send('Access Denied. Token required.');
@@ -72,8 +73,23 @@ router.get('/myjobs/', async (req, res) => {
         }
         // Get the job list that the user posted
         try {
-            const jobs = await Job.find({ postedBy: user._id }).populate('postedBy', 'username name email contactInfo role');
-            res.json(jobs);
+            if (!searchKey || searchKey == '') {
+                const jobs = await Job.find({ postedBy: user._id }).sort({ datePosted: 'desc'})
+                        .populate('postedBy', 'username name email contactInfo role');
+                res.json(jobs);
+            }
+            else {
+                const regex = new RegExp(searchKey, "i");
+                const jobs = await Job.find({ postedBy: user._id,
+                    $or: [
+                        { title: regex },
+                        { description: regex },
+                        { type: regex },
+                        { city: regex }
+                    ]
+                }).sort({ datePosted: 'desc'}).populate('postedBy', 'username name email contactInfo role');
+                res.json(jobs);
+            }
         }
         catch(err) {
             return res.status(404).send("Could not get the job list.");

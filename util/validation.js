@@ -50,7 +50,7 @@ const productValidation = (data) => {
 const jobValidation = (data) => {
     const schema = Joi.object({
         title: Joi.string().trim().min(2).max(30).required(),
-        type: Joi.string().trim().required().valid('temporary', 'full-time', 'part-time', 'any'),
+        type: Joi.string().trim().required().valid('Temporary', 'Full-time', 'Part-time', 'Any'),
         description: Joi.string().trim().max(600).allow(null, ''),
         salary: Joi.number().positive().default(0),
         unitType: Joi.string().trim().valid('', 'one-time', 'hour', 'day', 'week', 'month').allow(null, ''),

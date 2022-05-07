@@ -62,6 +62,7 @@ router.get('/', async (req, res) => {
 // Get equipment list that the user posted from the user's auth token
 router.get('/myequipments/', async (req, res) => {
     try {
+        const searchKey = req.query.searchKey;
         // Get auth-token from header
         const token = req.header('auth-token');
         if (!token) return res.status(401).send('Access Denied. Token required.');
@@ -79,8 +80,23 @@ router.get('/myequipments/', async (req, res) => {
         }
         // Get the equipment list
         try {
-            const equipments = await Equipment.find({ postedBy: user._id }).populate('postedBy', 'username name email contactInfo');
-            res.json(equipments);
+            if (!searchKey || searchKey == '') {
+                const equipments = await Equipment.find({ postedBy: user._id })
+                        .sort({ datePost: 'desc'}).populate('postedBy', 'username name email contactInfo');
+                res.json(equipments);
+            } else {
+                const regex = new RegExp(searchKey, "i");
+                const equipments = await Equipment.find({
+                    $or: [
+                        { title: regex },
+                        { description: regex },
+                        { type: regex },
+                        { city: regex }
+                    ],
+                    postedBy: user._id
+                }).sort({datePosted: 'desc'}).populate('postedBy', 'username name email contactInfo');
+                res.json(equipments);
+            }
         }
         catch(err) {
             return res.status(404).send("Could not get the equipment list.");
