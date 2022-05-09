@@ -121,8 +121,6 @@ router.get('/:equipmentId', async (req, res) => {
 // Create equipment post
 router.post('/', upload.single('image'), async (req, res) => {
     try {
-        // log the request
-        console.log(req);
         // Get auth-token from header
         const token = req.header('auth-token');
         if (!token) return res.status(401).send('Access Denied. Token required.');
