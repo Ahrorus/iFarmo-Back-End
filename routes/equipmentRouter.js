@@ -82,7 +82,7 @@ router.get('/myequipments/', async (req, res) => {
         try {
             if (!searchKey || searchKey == '') {
                 const equipments = await Equipment.find({ postedBy: user._id })
-                        .sort({ datePost: 'desc'}).populate('postedBy', 'username name email contactInfo');
+                        .sort({ datePosted: 'desc'}).populate('postedBy', 'username name email contactInfo');
                 res.json(equipments);
             } else {
                 const regex = new RegExp(searchKey, "i");
