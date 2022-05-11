@@ -200,7 +200,7 @@ router.put('/:productId', upload.single('image'), async (req, res) => {
             return res.status(403).send(error.details[0].message);
         }
         // Upload image to S3
-        let imagePath = product.imagePath;
+        let imagePath = "";
         if (req.file) {
             const result = await uploadFile(req.file);
             if (!result) return res.status(404).send('Could not upload the file.');
