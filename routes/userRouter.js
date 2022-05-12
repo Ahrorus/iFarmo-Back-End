@@ -50,6 +50,7 @@ router.put('/', async (req, res) => {
                     name: req.body.name,
                     role: req.body.role,
                     bio: req.body.bio,
+                    email: req.body.email,
                     contactInfo: req.body.contactInfo
                 }},
                 {new: true} // Makes sure to return the newly updatedUser
