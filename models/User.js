@@ -24,7 +24,7 @@ const userSchema = mongoose.Schema({
         type: String,
         trim: true,
         required: true,
-        default: 'farmer'
+        default: 'user'
     },
     bio: {
         type: String,
