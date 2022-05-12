@@ -27,6 +27,7 @@ const updateUserValidation = (data) => {
         name: Joi.string().trim().min(2).max(30).required(), 
         role: Joi.string().trim().valid('user','farmer', 'worker'),
         bio: Joi.string().trim().max(250).allow(null, ''),
+        email: Joi.string().trim().min(8).max(30).required().email(),
         contactInfo: Joi.string().trim().min(0).max(30)
     });
     return schema.validate(data);
