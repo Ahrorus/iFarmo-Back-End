@@ -1,9 +1,16 @@
 # iFarmo API
 
-This is a repository that contains necessary project files for the iFarmo's backend server. The server is deployed on Heroku, and its API calls are accessible via link:
+This is a repository that contains necessary project files for the iFarmo's backend server.
 
-https://nodejs-ifarmo.herokuapp.com/api/
+Below is the diagram that shows the architecture of the API and technologies used. The API itself is a RESTful NodeJS application with multiple endpoints that connect the frontend (ReactNative mobile app), the MongoDB Atlas cloud database (for storing data), and the AWS S3 cloud storage (for images). 
 
+![](System_Architecture_Design.png)
+
+The API is deployed on Heroku, and its API calls are accessible via link: https://nodejs-ifarmo.herokuapp.com/api/.
+
+The documentation for the API is available at link: https://documenter.getpostman.com/view/13899012/UyxbrqHi.
+
+<br>
 
 # iFarmo API Local Installation
 
@@ -30,7 +37,8 @@ https://nodejs-ifarmo.herokuapp.com/api/
     PORT = ... ```
 4. Run ```npm start``` to run the server.
 
-# iFarmo API Documentation
+<br>
 
-Use the API on localhost or the one deployed on Heroku (https://nodejs-ifarmo.herokuapp.com/api/) to make requests. The documentation was generated using Postman, and is publicly accessible here: https://documenter.getpostman.com/view/13899012/UyxbrqHi
+# Front-end App
 
+The iFarmo front-end is React Native mobile on Expo. For more information, visit the GitHub repository link: https://github.com/Chris-Hayashi/iFarmo-Front-End
